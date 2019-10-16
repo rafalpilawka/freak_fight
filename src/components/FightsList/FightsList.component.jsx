@@ -1,10 +1,9 @@
-import React,{useContext} from 'react'
-import { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react'
 import Fight from './Fight/Fight.component';
 import Fighter from './Fight/Fighter/Fighter.component';
 import styled from 'styled-components';
-import {data} from '../../data/data'
-import FirebaseContext from '../../firebase/context'
+import { data } from '../../data/data'
+import FirebaseContext from '../../firebase/context';
 
 const FightsList = styled.div`{
     display: flex;
@@ -13,34 +12,35 @@ const FightsList = styled.div`{
     flex-direction: column;
     width: 75%;
    
-
 }`
 
-const FightsListContainer = (props) => {
+const FightsListContainer = ()  => {
     const Firebase = useContext(FirebaseContext)
     const [fights, setFights] = useState([])
+    console.log(Firebase)
 
-    useEffect(()=>{
-       Firebase
-        .firestore
-        .collection('fights').onSnapshot((snapshot=>{
-            const allFights = snapshot.docs.map(doc=>({
-                id: doc.id,
-                ...doc.data()
-            }))
-        setFights(allFights)
-        }))
-     
+    useEffect(() => {
+        Firebase
+            .firestore
+            .collection('fights').onSnapshot((snapshot)=> {
+
+                const allFights = snapshot.docs.map(doc=>({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+                console.log(allFights)
+                setFights(allFights)
+            })
     },[])
 
-console.log(fights)
+    console.log('after fetch',fights)
 
-   const fightsArray = fights.map(fight =>
-       (<Fight key={fight.id} fight={fight}></Fight>) )
+    const fightsArray = fights.map(fight =>
+        (<Fight key={fight.id} fight={fight}></Fight>))
     return (
         <FightsList>
-            {fights ?  fightsArray :
-                    <div>Loading...</div> }   
+            {fights ? fightsArray:
+                <div>Loading...</div>}
         </FightsList>
     )
 }

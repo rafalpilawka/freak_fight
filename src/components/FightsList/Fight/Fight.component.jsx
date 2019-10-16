@@ -26,7 +26,7 @@ const FightContainer = ({fight}) => {
    console.log(fight.fighter1)
     return (
         <Fight >
-            <Fighter fighter={fight.fighter1}/>
+            <Fighter fight={fight.fighter1}/>
                 <VS>VS</VS>
             <Fighter fighter={fight.fighter2}/>
         </Fight>
