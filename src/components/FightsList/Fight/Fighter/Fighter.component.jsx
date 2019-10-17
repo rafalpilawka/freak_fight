@@ -1,4 +1,4 @@
-import React , {useState, useContext} from 'react';
+import React , {useState, useContext, useEffect } from 'react';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -61,10 +61,16 @@ const FighterControl=styled.div`{
     align-items: center;
     z-index: 999;
 }`
+const StyledButton = styled.button`{
+        display: flex;
+        justify - content: space - between;
+        align - items: center;
+        z - index: 999;
+}`
 
-const FighterContainer = ({fighter}) => {
+const FighterContainer = ({fighter, modal}) => {
 
-    const {firestore} = useContext(FirebaseContext)
+    const {firestore, auth} = useContext(FirebaseContext)
 
     const [toggleModal, setToggleModal ] = useState({toggleModal: false})
 
@@ -91,42 +97,29 @@ const FighterContainer = ({fighter}) => {
         setToggleModal({ modalIsOpen: false });
     }
 
-    return (
-        <Fighter>
-            {/* <Modal
-                isOpen={toggleModal}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >
+    const checkAuthAndVote = (e) =>{
+        console.log(e.target.id)
+        //     if (auth.currentUser){
+        // console.log(e.target.id)
+        //     }else{
+        //         console.log('weneed modal')
+        //     }
+}
 
-                <h2 ref='ref'
-                // { subtitle => this.subtitle = subtitle}
-                    >Hello</h2>
-                <button onClick={closeModal}>close</button>
-                <div>I am a modal</div>
-                <form>
-                    <input />
-                    <button>tab navigation</button>
-                    <button>stays</button>
-                    <button>inside</button>
-                    <button>the modal</button>
-                </form>
-            </Modal> */}
+    return (
+        <>
+        
+
+        <Fighter >
          <FighterDescription>{fighter}</FighterDescription>
             <FighterImage/>
             <FighterControl>
-                <FontAwesomeIcon style={fontawsomeStyle} onClick={favoriteHandler} icon={faHeart} id='like'  />
-           
-                <FontAwesomeIcon style={fontawsomeStyle} onClick={winHandler} icon={faStar} id='win' />
+                <FontAwesomeIcon style={fontawsomeStyle} onClick={checkAuthAndVote.bind(this)} icon={faHeart} id='favorite'></FontAwesomeIcon>
+                <FontAwesomeIcon style={fontawsomeStyle} onClick={checkAuthAndVote.bind(this)} icon={faStar} id='win'/>
             </FighterControl>
-            {/* {togglePopUp ? <PopUp /> : null } */}
-            
-            
-        </Fighter>
+        </Fighter> 
        
-                    
+          </>          
     )
 }
 

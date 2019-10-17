@@ -22,13 +22,14 @@ const VS = styled.div`
     }
 `
 
-const FightContainer = ({fight}) => {
+const FightContainer = ({fight, modal}) => {
    console.log(fight.fighter1)
     return (
         <Fight >
-            <Fighter fight={fight.fighter1}/>
+            <button onClick={modal}>Modal check</button>
+            <Fighter modal={modal} fight={fight.fighter1}/>
                 <VS>VS</VS>
-            <Fighter fighter={fight.fighter2}/>
+            <Fighter modal={modal} fighter={fight.fighter2}/>
         </Fight>
     )
 }

@@ -7,7 +7,7 @@ const UserContextProvider = (props) => {
     const [userStatus, setUserStatus] = useState({userStatus: false});
 
     useEffect(()=>{
-        console.log(userStatus)
+        console.log('userStatus--66',userStatus)
     })
 
     return (

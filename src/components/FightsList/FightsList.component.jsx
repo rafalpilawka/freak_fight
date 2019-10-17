@@ -4,6 +4,22 @@ import Fighter from './Fight/Fighter/Fighter.component';
 import styled from 'styled-components';
 import { data } from '../../data/data'
 import FirebaseContext from '../../firebase/context';
+import Modal from 'react-modal';
+import { UserContext } from '../../context/userContext';
+import Authorization from '../Navigation/Authorization/Authorization'
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
+// Modal.setAppElement('#modal')
 
 const FightsList = styled.div`{
     display: flex;
@@ -16,7 +32,9 @@ const FightsList = styled.div`{
 
 const FightsListContainer = ()  => {
     const Firebase = useContext(FirebaseContext)
+    const { userStatus } = useContext(UserContext)
     const [fights, setFights] = useState([])
+    const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false })
     console.log(Firebase)
 
     useEffect(() => {
@@ -33,14 +51,57 @@ const FightsListContainer = ()  => {
             })
     },[])
 
+
+    //MODAL
+    const openModal = () => {
+        setToggleModal({ modalIsOpen: true });
+    }
+
+    const afterOpenModal = () => {
+        // references are now sync'd and can be accessed.
+        // this.subtitle.style.color = '#f00';
+    }
+
+    const closeModal = () => {
+        setToggleModal({ modalIsOpen: false });
+    }
+
+
+    //MODAL
+
+    const fireModal=()=>{
+        console.log('modal check--333', modalIsOpen)
+        setToggleModal({modalIsOpen: true})
+    }
+
     console.log('after fetch',fights)
 
     const fightsArray = fights.map(fight =>
-        (<Fight key={fight.id} fight={fight}></Fight>))
+        (<Fight modal={fireModal} key={fight.id} fight={fight}></Fight>))
     return (
         <FightsList>
             {fights ? fightsArray:
                 <div>Loading...</div>}
+            <div id='modal'></div>
+            <Modal
+                isOpen={modalIsOpen.modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+
+                <h2 
+                // { subtitle => this.subtitle = subtitle}
+                    >Please login with Facebook</h2>
+                <button onClick={closeModal}>Exit without login</button>
+                <div></div>
+                <form>
+                    <input />
+                   <Authorization/>
+                </form>
+            </Modal>
+
         </FightsList>
     )
 }
