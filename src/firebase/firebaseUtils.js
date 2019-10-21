@@ -39,7 +39,7 @@ class Firebase{
     })
   }
   addToFightArray = async (name, id, userId, arrayClass)=>{
-    const pointer = this.firestore.collection(name).doc(id)
+    const pointer = await this.firestore.collection(name).doc(id)
     const votingArray = await this.firestore.collection(name).doc(id).get().then(res=>res.data())
     let setvotingArray
     let vote=[];
@@ -64,7 +64,7 @@ class Firebase{
           vote.push(userId);
           setvotingArray = Array.from(new Set(vote))
           try {
-            pointer.update({ voteForWin: setvotingArray })
+            pointer.update({ votesForWin: setvotingArray })
 
           } catch (error) {
             console.log(error)
