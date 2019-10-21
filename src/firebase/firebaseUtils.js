@@ -2,7 +2,6 @@ import app from 'firebase/app';
 import  'firebase/firestore'
 import 'firebase/auth'
 
- 
 
 const config = {
     apiKey: "AIzaSyAR0WVISVNCMgwjM4ksEtO8IrbzQuOI-3E",
@@ -22,12 +21,18 @@ class Firebase{
     // this.db = app.database();
     this.facebookProvider = new app.auth.FacebookAuthProvider().setCustomParameters({'display': 'popup' });;
     this.firestore = app.firestore();
-
+   
+  
   }
-
+  updateField = (name, id, obj) =>{
+    this.firestore.collection(name).doc(id).update(obj)
+  }
+  getCollectionDoc = (name, id) => 
+    this.firestore.collection(name).doc(id).get()
   doSignInWithFacebook = () =>
     this.auth.signInWithPopup(this.facebookProvider);
   doSignOut = () => this.auth.signOut();
+
   
 }
 

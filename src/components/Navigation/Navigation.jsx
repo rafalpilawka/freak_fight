@@ -2,7 +2,8 @@ import React, {useContext} from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {ReactComponent as Logo} from './freakfight_logo22.svg'
-import Authorization from './Authorization/Authorization';
+import Authorization from 'components/Navigation/Authorization/Authorization'
+import FirebaseContext from 'firebase/context';
 
 
 const Nav = styled.div`{
@@ -37,6 +38,8 @@ const NavlinkPad = styled.div`{
 
 
 const Navigation = () => {
+
+    const { auth } = useContext(FirebaseContext)
   
     return (
         <Nav>
@@ -44,6 +47,7 @@ const Navigation = () => {
             <NavigationLinks >
                 <NavlinkPad><Link to='/archives'>Arch</Link></NavlinkPad>
                 <NavlinkPad><Link to='/heroes'>Heros</Link></NavlinkPad>
+                <button onClick={()=>{console.log(auth.currentUser)}}>auth check</button>
                 
                 <Authorization />
                

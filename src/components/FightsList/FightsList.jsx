@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
-import Fight from './Fight/Fight.component';
-import Fighter from './Fight/Fighter/Fighter.component';
+import Fight from 'components/FightsList/Fight/Fight';
+
 import styled from 'styled-components';
-import { data } from '../../data/data'
-import FirebaseContext from '../../firebase/context';
+import { data } from 'data/data'
+import FirebaseContext from 'firebase/context';
 import Modal from 'react-modal';
-import { UserContext } from '../../context/userContext';
-import Authorization from '../Navigation/Authorization/Authorization'
+import { UserContext } from 'context/userContext';
+import Authorization from 'components/Navigation/Authorization/Authorization'
 
 const customStyles = {
     content: {
@@ -77,7 +77,8 @@ const FightsListContainer = ()  => {
     console.log('after fetch',fights)
 
     const fightsArray = fights.map(fight =>
-        (<Fight modal={fireModal} key={fight.id} fight={fight}></Fight>))
+        (<Fight modal={fireModal} id={fight.id} key={fight.id} fight={fight}></Fight>))
+
     return (
         <FightsList>
             {fights ? fightsArray:

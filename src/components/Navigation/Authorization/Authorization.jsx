@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import {UserContext} from '../../../context/userContext'
+import {UserContext} from 'context/userContext'
 import styled from 'styled-components'
-import FirebaseContext from '../../../firebase/context';
+import FirebaseContext from 'firebase/context';
 
 const Button = styled.button`
 {

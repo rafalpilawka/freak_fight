@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Fighter from './Fighter/Fighter.component'
+import Fighter from 'components/FightsList/Fight/Fighter/Fighter'
 
 
-const Fight = styled.div`
+const FightWrapper = styled.div`
     {
         display: flex;
         justify-content: space-between;
@@ -22,16 +22,15 @@ const VS = styled.div`
     }
 `
 
-const FightContainer = ({fight, modal}) => {
+const Fight = ({fight, modal, id}) => {
    console.log(fight.fighter1)
     return (
-        <Fight >
-            <button onClick={modal}>Modal check</button>
-            <Fighter modal={modal} fight={fight.fighter1}/>
+        <FightWrapper >
+            <Fighter modal={modal} fighter={fight.fighter1} fightKey={id} fighterId={1}/>
                 <VS>VS</VS>
-            <Fighter modal={modal} fighter={fight.fighter2}/>
-        </Fight>
+            <Fighter modal={modal} fighter={fight.fighter2} fightKey={id} fighterId={2}/>
+        </FightWrapper>
     )
 }
 
-export default FightContainer
+export default Fight
