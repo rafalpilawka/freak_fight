@@ -19,16 +19,16 @@ const VS = styled.div`
         color: red; 
         padding-left: 40px;
         padding-right: 40px;
+        z-index: 999;
     }
 `
 
 const Fight = ({fight, modal, id}) => {
-   console.log(fight.fighter1)
     return (
         <FightWrapper >
-            <Fighter modal={modal} fighter={fight.fighter1} fightKey={id} fighterId={1}/>
+            <Fighter modal={modal} fighter={fight.fighter1} fightKey={id} fighterId={1} votes={fight.voteForWin}/>
                 <VS>VS</VS>
-            <Fighter modal={modal} fighter={fight.fighter2} fightKey={id} fighterId={2}/>
+            <Fighter modal={modal} fighter={fight.fighter2} fightKey={id} fighterId={2} votes={fight.voteForWin}/>
         </FightWrapper>
     )
 }

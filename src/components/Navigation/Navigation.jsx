@@ -47,10 +47,7 @@ const Navigation = () => {
             <NavigationLinks >
                 <NavlinkPad><Link to='/archives'>Arch</Link></NavlinkPad>
                 <NavlinkPad><Link to='/heroes'>Heros</Link></NavlinkPad>
-                <button onClick={()=>{console.log(auth.currentUser)}}>auth check</button>
-                
-                <Authorization />
-               
+                <Authorization isAuth={auth.currentUser}/>
             </NavigationLinks>      
         </Nav>
     )

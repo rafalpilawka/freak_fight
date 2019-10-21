@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {UserContext} from 'context/userContext'
 import styled from 'styled-components'
 import FirebaseContext from 'firebase/context';
@@ -14,27 +14,39 @@ const LoginStatusContainer = styled.div`{
 
 }`
 
-const AuthorizationContainer = (props) => {
+const AuthorizationContainer = ({isAuth}) => {
+
+    
+    
+    // const { userStatus, setUserStatus } = useContext(UserContext);
+    const { auth, doSignInWithFacebook, doSignOut, isInitialized} = useContext(FirebaseContext)
+    const [userAuth , setUserAuth] = useState(false);
+
+    // const [messageAuth, set]
+
+    useEffect(()=>{
+
+    })
 
 
-    console.log(props)
-    const { userStatus, setUserStatus } = useContext(UserContext);
-    const { auth, doSignInWithFacebook, doSignOut} = useContext(FirebaseContext)
 
     const signInWithFacebook=()=>{
 
         if(!auth.currentUser){
-            doSignInWithFacebook().then(socialAuthUser => setUserStatus({ userStatus: auth.currentUser })).catch(err => console.log(err))
+            doSignInWithFacebook().then(socialAuthUser => setUserAuth({ userStatus: auth.currentUser })).catch(err => console.log(err))
         }else{
-            doSignOut().then(res =>{ console.log(res);setUserStatus({ userStatus: false})}).catch(err=>console.log(err))
+            doSignOut().then(res =>{ console.log(res); setUserAuth({ userAuth: false})}).catch(err=>console.log(err))
         }
     }
     
         return (
             <LoginStatusContainer>
+                        <Button onClick={()=>console.log(auth.currentUser)}>CHeck from auth</Button>
                         <Button onClick={signInWithFacebook} >
-                    {auth.currentUser ? 'You are signedIn' : 'Log in' }
+                        {/* { userStatus ? `You are signedIn as: ${auth.currentUser.email}` : 'Log in' } */}
+                        {!userAuth === false ? 'LogOut' : 'Log in' }
                         </Button>
+                        {/* <Button onClick={simpleChange}>Switch</Button> */}
             </LoginStatusContainer>
         );
 }

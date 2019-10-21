@@ -27,7 +27,7 @@ const FighterImage = styled.img`{
         background-image: (${props => props.imgUrl});
         display: flex;
         width: 300px;
-        height:500px;
+        height:300px;
         background-color: grey;
         object-fit: cover;
         margin-top: 10px;
@@ -100,28 +100,29 @@ Modal.setAppElement('#root')
 const FighterContainer = ({fighter, modal, fightKey, fighterId}) => {
 
     
-    const {firestore, auth, getCollectionDoc, updateField} = useContext(FirebaseContext)
+    const {firestore, auth, getCollectionDoc, updateField, addToFightArray} = useContext(FirebaseContext)
+
     const [svg, setSvg] = useState()
-
-    console.log(fighter)
-   
-
+    
     var fontawsomeStyle =  { transform: 'scale(2.5)', cursor: 'pointer'}
 
     const checkAuthAndVote = (e) =>{
 
-    fighter = e.target.className + fighterId
-    if (auth.currentUser){
-        try {
-            updateField('fights', fightKey, { [fighter]: 1 })
-        } catch (error) {
-            console.log(error)
-        }    
-    }else{
-        modal()
-    }
-      
-    }
+        fighter = e.target.className + fighterId
+        if (auth.currentUser){
+            try {
+                updateField('fights', fightKey, { [fighter]: 1 });
+                addToFightArray('fights', fightKey ,auth.currentUser.uid, e.target.className);
+            } catch (error) {
+                console.log(error)
+            }    
+        }else{
+            modal()
+        }
+        
+        }
+
+    useEffect(()=>{},[auth.currentUser])
 
     return (
         <>     
@@ -140,6 +141,9 @@ const FighterContainer = ({fighter, modal, fightKey, fighterId}) => {
                 
                     {/* <FontAwesomeIcon style={fontawsomeStyle} icon={faHeart} onClick={checkAuthAndVote.bind(this)} ></FontAwesomeIcon> */}
                         {/* <div style={{ margin: '20px' }} onClick={checkAuthAndVote.bind(this)} className='win'><FontAwesomeIcon style={fontawsomeStyle}  icon={faStar} /></div> */}
+                <div>Favorite of </div>
+                <div>Favorite of </div>
+                
                 </FighterControl>
             </Fighter> 
             

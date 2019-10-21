@@ -1,14 +1,22 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import FirebaseContext from 'firebase/context';
 
 const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
-    const [userStatus, setUserStatus] = useState({userStatus: false});
+    const { auth } =  useContext(FirebaseContext)
+    // const [userStatus, setUserStatus] = useState({userStatus: auth.currentUser});
+    const [userStatus, setUserStatus] = useState();
 
     useEffect(()=>{
-        console.log('userStatus--66',userStatus)
-    })
+     const asyncSet = async () => {
+         await setUserStatus({userStatus: auth.currentUser});
+      }
+
+        asyncSet()
+        console.log('111111', userStatus)
+    },[])
 
     return (
         <UserContext.Provider value={{ userStatus, setUserStatus }}>
