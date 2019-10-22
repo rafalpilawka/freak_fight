@@ -5,7 +5,7 @@ import Navigation from 'components/Navigation/Navigation'
 import FightsList from './components/FightsList/FightsList'
 import styled from 'styled-components';
 import Footer from './components/Footer/Footer'
-import { UserContextProvider } from './context/userContext';
+// import { UserContextProvider } from './context/userContext';
 
 
 const AppStyle = styled.div`{
@@ -22,7 +22,7 @@ function App() {
     
 
     <Router>
-      <UserContextProvider>
+      {/* <UserContextProvider> */}
           <Navigation />
           <Switch>
             <AppStyle>
@@ -30,7 +30,7 @@ function App() {
               <Route exact path="/" component={FightsList}></Route>
             </AppStyle>
           </Switch>
-        </UserContextProvider>
+        {/* </UserContextProvider> */}
         <Footer></Footer>
     </Router>
     

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {UserContext} from 'context/userContext'
 import styled from 'styled-components'
 import FirebaseContext from 'firebase/context';
 
@@ -14,39 +13,36 @@ const LoginStatusContainer = styled.div`{
 
 }`
 
-const AuthorizationContainer = ({isAuth}) => {
+const AuthorizationContainer = () => {
 
-    
-    
-    // const { userStatus, setUserStatus } = useContext(UserContext);
-    const { auth, doSignInWithFacebook, doSignOut, isInitialized} = useContext(FirebaseContext)
-    const [userAuth , setUserAuth] = useState(false);
+    const {  auth, doSignInWithFacebook, doSignOut } = useContext(FirebaseContext)
+    const [userAuth, setUserAuth] = useState(() => auth.currentUser);
 
-    // const [messageAuth, set]
 
     useEffect(()=>{
-
-    })
-
-
-
+            console.log('auth-999', auth)
+            const authVar = auth.onAuthStateChanged(function (user) {
+                if (user) {
+                    setUserAuth(true)
+                    console.log('tt-333', user)   }else{setUserAuth(false)}   } )
+            },
+            []
+        );
+  
     const signInWithFacebook=()=>{
-
         if(!auth.currentUser){
-            doSignInWithFacebook().then(socialAuthUser => setUserAuth({ userStatus: auth.currentUser })).catch(err => console.log(err))
+            doSignInWithFacebook().then(socialAuthUser => setUserAuth(true)).catch(err => console.log(err))
         }else{
-            doSignOut().then(res =>{ console.log(res); setUserAuth({ userAuth: false})}).catch(err=>console.log(err))
+            doSignOut().then(res => setUserAuth(false)).catch(err => console.log(err))
         }
     }
-    
+        console.log('UserAuth before -00000', userAuth)
         return (
             <LoginStatusContainer>
                         <Button onClick={()=>console.log(auth.currentUser)}>CHeck from auth</Button>
                         <Button onClick={signInWithFacebook} >
-                        {/* { userStatus ? `You are signedIn as: ${auth.currentUser.email}` : 'Log in' } */}
-                        {!userAuth === false ? 'LogOut' : 'Log in' }
+                        {userAuth ? 'LogOut' : 'Log in' }
                         </Button>
-                        {/* <Button onClick={simpleChange}>Switch</Button> */}
             </LoginStatusContainer>
         );
 }

@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Fight from 'components/FightsList/Fight/Fight';
-
 import styled from 'styled-components';
 import { data } from 'data/data'
 import FirebaseContext from 'firebase/context';
 import Modal from 'react-modal';
-import { UserContext } from 'context/userContext';
+// import { UserContext } from 'context/userContext';
 import Authorization from 'components/Navigation/Authorization/Authorization'
 
 const customStyles = {
@@ -32,7 +31,7 @@ const FightsList = styled.div`{
 
 const FightsListContainer = ()  => {
     const Firebase = useContext(FirebaseContext)
-    const { userStatus } = useContext(UserContext)
+    // const { userStatus } = useContext(UserContext)
     const [fights, setFights] = useState([])
     const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false })
     console.log(Firebase)

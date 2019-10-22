@@ -6,7 +6,7 @@ const Footer = styled.div`{
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    height: 80px;
+    height: 60px;
     position: fixed;
     bottom: 0;
     color: white;

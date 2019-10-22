@@ -100,9 +100,9 @@ Modal.setAppElement('#root')
 const FighterContainer = ({fighter, modal, fightKey, fighterId}) => {
 
     
-    const {firestore, auth, getCollectionDoc, updateField, addToFightArray} = useContext(FirebaseContext)
+    const {firestore, auth, getCollectionDoc, updateField, voteHandler} = useContext(FirebaseContext)
 
-    const [svg, setSvg] = useState()
+    
     
     var fontawsomeStyle =  { transform: 'scale(2.5)', cursor: 'pointer'}
 
@@ -111,8 +111,8 @@ const FighterContainer = ({fighter, modal, fightKey, fighterId}) => {
         fighter = e.target.className + fighterId
         if (auth.currentUser){
             try {
-                updateField('fights', fightKey, { [fighter]: 1 });
-                addToFightArray('fights', fightKey ,auth.currentUser.uid, e.target.className);
+                // updateField('fights', fightKey, { [fighter]: 1 });
+                voteHandler('fights', fightKey ,auth.currentUser.uid, e.target.className, fighterId);
             } catch (error) {
                 console.log(error)
             }    

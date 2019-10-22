@@ -2,7 +2,7 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components'
 import FirebaseContext from '../../firebase/context'
-import {UserContext} from '../../context/userContext'
+// import {UserContext} from '../../context/userContext'
 
 const Facebook = styled.button`{
     display: flex;
@@ -25,7 +25,7 @@ const PopUp = styled.div`{
 
 const LoginPopUp = () => {
     const { auth, doSignInWithFacebook} = useContext(FirebaseContext)
-    const {userStatus , setUserStatus} = useContext(UserContext)
+    // const {userStatus , setUserStatus} = useContext(UserContext)
  
     return (
     <PopUp>
