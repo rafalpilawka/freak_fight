@@ -1,4 +1,4 @@
-import React , {useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -74,7 +74,7 @@ const IconContainer = styled.div`{
 
     }`
 
-const Button =styled.div`{
+const Button = styled.div`{
     position: relative;
     top: -1vh;
     background-color: grey;
@@ -84,7 +84,6 @@ const Button =styled.div`{
 }`
 
 const customStyles = {
-    
     content: {
         top: '50%',
         left: '50%',
@@ -97,57 +96,46 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-const FighterContainer = ({fighter, modal, fightKey, fighterId}) => {
+const FighterContainer = ({ fighter, modal, fightKey, fighterId }) => {
 
+    const { auth, voteHandler } = useContext(FirebaseContext)
     
-    const {firestore, auth, getCollectionDoc, updateField, voteHandler} = useContext(FirebaseContext)
-
-    
-    
-    var fontawsomeStyle =  { transform: 'scale(2.5)', cursor: 'pointer'}
-
-    const checkAuthAndVote = (e) =>{
-
+    const checkAuthAndVote = (e) => {
         fighter = e.target.className + fighterId
-        if (auth.currentUser){
+        if (auth.currentUser) {
             try {
-                // updateField('fights', fightKey, { [fighter]: 1 });
-                voteHandler('fights', fightKey ,auth.currentUser.uid, e.target.className, fighterId);
+                voteHandler('fights', fightKey, auth.currentUser.uid, e.target.className, fighterId);
             } catch (error) {
                 console.log(error)
-            }    
-        }else{
+            }
+        } else {
             modal()
         }
-        
-        }
+    }
 
-    useEffect(()=>{},[auth.currentUser])
+    // useEffect(()=>{},[auth.currentUser])
 
     return (
-        <>     
-            <Fighter >
+        <Fighter >
             <FighterDescription>{fighter}</FighterDescription>
-                <FighterImage></FighterImage>
-                <FighterControl>
-                    <Button><button className='favoriteFighter' onClick={checkAuthAndVote}>Fav</button></Button>
-                    <Button><button className='winFighter' onClick={checkAuthAndVote}>Win</button></Button>
-                    {/* <IconContainer>
+            <FighterImage></FighterImage>
+            <FighterControl>
+                <Button><button className='favoriteFighter' onClick={checkAuthAndVote}>Fav</button></Button>
+                <Button><button className='winFighter' onClick={checkAuthAndVote}>Win</button></Button>
+                {/* <IconContainer>
                         <Star onClick={checkAuthAndVote}></Star>
                     </IconContainer> */}
-                    {/* <IconContainer>
+                {/* <IconContainer>
                         <Heart onClick={checkAuthAndVote}></Heart>
                     </IconContainer> */}
-                
-                    {/* <FontAwesomeIcon style={fontawsomeStyle} icon={faHeart} onClick={checkAuthAndVote.bind(this)} ></FontAwesomeIcon> */}
-                        {/* <div style={{ margin: '20px' }} onClick={checkAuthAndVote.bind(this)} className='win'><FontAwesomeIcon style={fontawsomeStyle}  icon={faStar} /></div> */}
+
+                {/* <FontAwesomeIcon style={fontawsomeStyle} icon={faHeart} onClick={checkAuthAndVote.bind(this)} ></FontAwesomeIcon> */}
+                {/* <div style={{ margin: '20px' }} onClick={checkAuthAndVote.bind(this)} className='win'><FontAwesomeIcon style={fontawsomeStyle}  icon={faStar} /></div> */}
                 <div>Favorite of </div>
                 <div>Favorite of </div>
-                
-                </FighterControl>
-            </Fighter> 
-            
-        </>          
+
+            </FighterControl>
+        </Fighter>
     )
 }
 
