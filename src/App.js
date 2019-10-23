@@ -11,7 +11,6 @@ import FightsList from './components/FightsList/FightsList';
 import styled from 'styled-components';
 import Footer from './components/Footer/Footer';
 
-
 const AppStyle = styled.div`
 	 {
 		display: flex;
@@ -25,7 +24,7 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<Navigation />
+				<Navigation />            
 				<Switch>
 					<AppStyle>
 						<Route exact path="/" component={FightsList} />
