@@ -35,11 +35,8 @@ const FighterImage = styled.img`
 const FighterDescription = styled.div`
 	 {
 		position: relative;
-		${'' /* top: -30px; */} text-align: center;
-		${'' /* flex-direction: row;
-        display: flex;
-        align-items: center;
-        justify-content: center; */} height:100%;
+		text-align: center;
+    height:100%;
 		top: 200px;
 	}
 `;
