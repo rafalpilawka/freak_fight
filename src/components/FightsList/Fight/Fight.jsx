@@ -4,17 +4,17 @@ import Fighter from 'components/FightsList/Fight/Fighter/Fighter';
 import { ReactComponent as VS } from 'components/FightsList/Fight/vslogo.svg'
 
 const FightWrapper = styled.div`
-	 {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		min-height: 400px;
-		background-color: lightgrey;
-		border: 1px solid black;
-		margin-top: 25px;
-        position: relative;
-        padding: 0 100px;
-	}
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 400px;
+	background-color: lightgrey;
+	border: 1px solid black;
+	margin-top: 25px;
+			position: relative;
+			padding: 0 100px;
+}
 `;
 
 

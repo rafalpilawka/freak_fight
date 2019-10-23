@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FirebaseContext from 'firebase/context';
 
-const Button = styled.button`
-	 {
-	}
-`;
 const LoginStatusContainer = styled.div`
-	 {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 `;
+
+const Button = styled.div`{
+	cursor: pointer;
+}`;
 
 const AuthorizationContainer = () => {
 	const { auth, doSignInWithFacebook, doSignOut } = useContext(FirebaseContext);
@@ -26,7 +26,7 @@ const AuthorizationContainer = () => {
 				setUserAuth(false);
 			}
 		});
-	}, []);
+	});
 
 	const signInWithFacebook = () => {
 		if (!auth.currentUser) {

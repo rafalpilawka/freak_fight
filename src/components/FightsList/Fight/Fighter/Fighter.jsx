@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {  useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import FirebaseContext from 'firebase/context';
-// import {ReactComponent as Star} from 'assets/star.svg'
-// import {ReactComponent as Heart} from 'assets/heart.svg'
+
 
 const Fighter = styled.div`
 	 {
@@ -105,8 +104,6 @@ const FighterContainer = ({ fighter, modal, fightKey, fighterId }) => {
 		}
 	};
 
-	// useEffect(()=>{},[auth.currentUser])
-
 	return (
 		<Fighter>
 			<FighterDescription>
@@ -115,25 +112,12 @@ const FighterContainer = ({ fighter, modal, fightKey, fighterId }) => {
 			<FighterImage />
 			<FighterControl>
 				<Buttons>
-					<Button className="favoriteFighter" onClick={checkAuthAndVote}>
-						Fav
-					</Button>
-					<Button className="winFighter" onClick={checkAuthAndVote}>
-						Win
-					</Button>
+					<Button className="favoriteFighter" onClick={checkAuthAndVote}>Fav</Button>
+					<Button className="winFighter" onClick={checkAuthAndVote}>Win</Button>
 				</Buttons>
 				<div>Favorite of </div>
 				<div>Favorite of </div>
 			</FighterControl>
-			{/* <IconContainer>
-                        <Star onClick={checkAuthAndVote}></Star>
-                    </IconContainer> */}
-			{/* <IconContainer>
-                        <Heart onClick={checkAuthAndVote}></Heart>
-                    </IconContainer> */}
-
-			{/* <FontAwesomeIcon style={fontawsomeStyle} icon={faHeart} onClick={checkAuthAndVote.bind(this)} ></FontAwesomeIcon> */}
-			{/* <div style={{ margin: '20px' }} onClick={checkAuthAndVote.bind(this)} className='win'><FontAwesomeIcon style={fontawsomeStyle}  icon={faStar} /></div> */}
 		</Fighter>
 	);
 };
