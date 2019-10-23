@@ -22,7 +22,8 @@ const Fighter = styled.div`
 
 const FighterImage = styled.img`
 	 {
-		background-image: (${props => props.imgUrl});
+		background: ${props => `url(${props.imgUrl}) no-repeat center` };
+		background-size: cover;
 		display: flex;
 		width: 300px;
 		height: 300px;
@@ -79,7 +80,7 @@ const Buttons = styled.div`
 	}
 `;
 
-const FighterContainer = ({ fighter, modal, fightKey, fighterId }) => {
+const FighterContainer = ({ fighter, modal, fightKey, fighterId, fighterPhoto }) => {
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -100,13 +101,14 @@ const FighterContainer = ({ fighter, modal, fightKey, fighterId }) => {
 			modal();
 		}
 	};
+	console.log(fighterPhoto, 'zz77')
 
 	return (
 		<Fighter>
 			<FighterDescription>
 				{fighter}
 			</FighterDescription>
-			<FighterImage />
+			<FighterImage imgUrl={fighterPhoto} />
 			<FighterControl>
 				<Buttons>
 					<Button className="favoriteFighter" onClick={checkAuthAndVote}>Fav</Button>

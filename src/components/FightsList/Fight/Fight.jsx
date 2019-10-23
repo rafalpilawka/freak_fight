@@ -24,6 +24,7 @@ const Fight = ({ fight, modal, id }) => {
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter1}
+				fighterPhoto={fight.fighter1Photo}
 				fightKey={id}
 				fighterId={1}
 				votes={fight.voteForWin}
@@ -32,6 +33,7 @@ const Fight = ({ fight, modal, id }) => {
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter2}
+				fighterPhoto={fight.fighter2Photo}
 				fightKey={id}
 				fighterId={2}
 				votes={fight.voteForWin}
