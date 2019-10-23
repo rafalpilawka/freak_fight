@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Fighter from 'components/FightsList/Fight/Fighter/Fighter';
+import { ReactComponent as VS } from 'components/FightsList/Fight/vslogo.svg'
 
 const FightWrapper = styled.div`
 	 {
@@ -11,16 +12,11 @@ const FightWrapper = styled.div`
 		background-color: lightgrey;
 		border: 1px solid black;
 		margin-top: 25px;
+        position: relative;
+        padding: 0 100px;
 	}
 `;
-const VS = styled.div`
-	 {
-		color: red;
-		padding-left: 40px;
-		padding-right: 40px;
-		z-index: 999;
-	}
-`;
+
 
 const Fight = ({ fight, modal, id }) => {
 	return (
@@ -32,7 +28,7 @@ const Fight = ({ fight, modal, id }) => {
 				fighterId={1}
 				votes={fight.voteForWin}
 			/>
-			<VS>VS</VS>
+            <VS />
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter2}

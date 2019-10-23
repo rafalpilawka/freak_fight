@@ -28,7 +28,6 @@ function App() {
 				<Navigation />
 				<Switch>
 					<AppStyle>
-						<div id="modal" />
 						<Route exact path="/" component={FightsList} />
 					</AppStyle>
 				</Switch>

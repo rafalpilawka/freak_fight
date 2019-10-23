@@ -5,6 +5,7 @@ import FirebaseContext from 'firebase/context';
 import Modal from 'react-modal';
 import Authorization from 'components/Navigation/Authorization/Authorization';
 
+
 const customStyles = {
 	content: {
 		top: '50%',
@@ -12,7 +13,17 @@ const customStyles = {
 		right: 'auto',
 		bottom: 'auto',
 		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        height: '500px',
+        zIndex: '999',
+        position: 'fixed',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        color: 'white',
+        backgroundColor: 'black',
+        fontSize: 'medium'
 	}
 };
 
@@ -25,6 +36,8 @@ const FightsList = styled.div`
 		width: 75%;
 	}
 `;
+
+
 
 const FightsListContainer = () => {
 	const Firebase = useContext(FirebaseContext);
@@ -56,21 +69,25 @@ const FightsListContainer = () => {
 	);
 
 	return (
+        <>
 		<FightsList>
-			{fights ? fightsArray : <div>Loading...</div>}
-			<div id="modal" />
-			<Modal
-				isOpen={modalIsOpen.modalIsOpen}
-				onAfterOpen={afterOpenModal}
-				onRequestClose={closeModal}
-				style={customStyles}
-				contentLabel="Authorization information">
-				<h2>Please login with Facebook</h2>
-				<button onClick={closeModal}>Exit without login</button>
-				<div />
-				<Authorization />
-			</Modal>
+            {fights ? fightsArray : <div>Loading...</div>}
+            {/* <ModalStyle> */}
+               
+            {/* </ModalStyle> */}
+            
 		</FightsList>
+        <Modal
+            isOpen={modalIsOpen.modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Authorization information">
+            <h3>Please login with Facebook</h3>
+                <Authorization />
+            <button onClick={closeModal}>Exit without login</button>
+            <div />
+        </Modal>
+        </>
 	);
 };
 
