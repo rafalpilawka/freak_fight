@@ -74,6 +74,8 @@ const FighterContainer = ({
 	fighterId,
 	fighterPhoto
 }) => {
+
+	console.log(fighter)
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -143,7 +145,7 @@ const FighterContainer = ({
 					/>
 				</ButtonsWrapper>
 			<FighterDescription>
-				{fighter}
+				{fighter.nick}
 			</FighterDescription>
 		</Fighter>
 	);

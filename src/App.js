@@ -31,7 +31,7 @@ function App() {
 					<Route exact path="/admin" component={Admin}/>
 					</AppStyle>
 				</Switch>
-				<Footer />
+				{/* <Footer /> */}
 			</Router>
 		</div>
 	);
