@@ -49,9 +49,12 @@ const Navigation = () => {
 	return (
 		<Nav>
 				<LogoStyle>
-						<Logo />
+					<Link to='/'><Logo /></Link>
 				</LogoStyle>
 				<NavigationLinks>
+						<NavlinkPad>
+							<Link to ='/admin'>Admin</Link>
+						</NavlinkPad>
 						<NavlinkPad>
 								<Link to="/archives">Arch</Link>
 						</NavlinkPad>

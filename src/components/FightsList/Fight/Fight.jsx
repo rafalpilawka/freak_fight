@@ -9,13 +9,17 @@ const FightWrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	min-height: 400px;
-	background-color: lightgrey;
+	background-color: black;
 	border: 1px solid black;
 	margin-top: 25px;
 			position: relative;
 			padding: 0 100px;
 }
 `;
+
+const VSlogo = styled.img`{
+
+}`
 
 
 const Fight = ({ fight, modal, id }) => {

@@ -32,7 +32,7 @@ const FightsList = styled.div`
 	justify-content: space-between;
 	align-content: center;
 	flex-direction: column;
-	width: 75%;
+	width: 80%;
 }
 `;
 

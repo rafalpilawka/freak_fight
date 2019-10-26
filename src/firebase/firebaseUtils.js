@@ -35,6 +35,16 @@ class Firebase {
 		});
 	}
 
+	addFighterHandler = async(fight)=>{
+		console.log(fight)
+		const pointer = await this.firestore.collection('fights')
+		try {
+			pointer.doc().set({ ...fight })
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	voteHandler = async (name, id, userId, arrayClass, fighterId) => {
 		const pointer = await this.firestore.collection(name).doc(id);
 		const votingArray = await this.firestore

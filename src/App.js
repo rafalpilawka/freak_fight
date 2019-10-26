@@ -9,6 +9,7 @@ import Navigation from 'components/Navigation/Navigation';
 import FightsList from './components/FightsList/FightsList';
 import styled from 'styled-components';
 import Footer from './components/Footer/Footer';
+import Admin from 'components/Admin/Admin'
 
 const AppStyle = styled.div`
 {
@@ -27,6 +28,7 @@ function App() {
 				<Switch>
 					<AppStyle>
 					<Route exact path="/" component={FightsList} />
+					<Route exact path="/admin" component={Admin}/>
 					</AppStyle>
 				</Switch>
 				<Footer />

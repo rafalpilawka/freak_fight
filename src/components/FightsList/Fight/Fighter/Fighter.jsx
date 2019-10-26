@@ -1,16 +1,17 @@
-import React, {  useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import FirebaseContext from 'firebase/context';
-
+import { ReactComponent as WinnerLogo } from '../../../../assets/winner.svg';
+import ImageMapper from 'react-image-mapper';
 
 const Fighter = styled.div`
 	 {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: lightgrey;
+		background-color: black;
 		color: white;
 		flex-basis: 300px;
 		width: 40%;
@@ -22,14 +23,11 @@ const Fighter = styled.div`
 
 const FighterImage = styled.img`
 	 {
-		background: ${props => `url(${props.imgUrl}) no-repeat center` };
 		background-size: cover;
 		display: flex;
-		width: 300px;
-		height: 300px;
-		background-color: grey;
-		object-fit: cover;
+		max-height: 300px;
 		margin-top: 10px;
+		border-bottom: 1px solid white;
 	}
 `;
 
@@ -37,8 +35,12 @@ const FighterDescription = styled.div`
 	 {
 		position: relative;
 		text-align: center;
-    height:100%;
-		top: 200px;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 4rem;
+		font-family: 'Teko', sans-serif;
+		position: relative;
+		top: -2.5vh
 	}
 `;
 
@@ -51,47 +53,39 @@ const FighterControl = styled.div`
 		top: auto;
 	}
 `;
-const Button = styled.div`
-	 {
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
-		text-align: center;
-		position: relative;
-		top: -1vh;
-		background-color: black;
-		color: white;
-		border: 1px solid black;
-		text-align: center;
-		vertical-align: middle;
-		margin-left: 10px;
-		margin-right: 10px;
-		width: 50px;
-		cursor: pointer;
-		padding: 4px;
-	}
-`;
-const Buttons = styled.div`
+
+const ButtonsWrapper = styled.div`
 	 {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-direction: row;
+		position: relative;
+		top: -3vh;
+		width: 135px;
+		
 	}
 `;
 
-const FighterContainer = ({ fighter, modal, fightKey, fighterId, fighterPhoto }) => {
+const FighterContainer = ({
+	fighter,
+	modal,
+	fightKey,
+	fighterId,
+	fighterPhoto
+}) => {
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
-		fighter = e.target.className + fighterId;
+		console.log(e);
+		fighter = e.className + fighterId;
 		if (auth.currentUser) {
 			try {
 				voteHandler(
 					'fights',
 					fightKey,
 					auth.currentUser.uid,
-					e.target.className,
+					e.className,
 					fighterId
 				);
 			} catch (error) {
@@ -101,22 +95,56 @@ const FighterContainer = ({ fighter, modal, fightKey, fighterId, fighterPhoto })
 			modal();
 		}
 	};
-	console.log(fighterPhoto, 'zz77')
+
+	const MAP1 = {
+		name: `${fightKey + fighterId}win`,
+		areas: [
+			{
+				name: '1',
+				shape: 'circle',
+				coords: [30, 30, 30],
+				className: 'winFighter'
+			}
+		]
+	};
+	const MAP2 = {
+		name: `${fightKey + fighterId}fav`,
+		areas: [
+			{
+				name: '1',
+				shape: 'circle',
+				coords: [30, 30, 30],
+				className: 'favFighter'
+			}
+		]
+	};
 
 	return (
 		<Fighter>
+			<FighterImage src={fighterPhoto} />
+				<ButtonsWrapper className='button-wrapper'>
+					<ImageMapper
+						width={60}
+						onClick={checkAuthAndVote}
+						src="assets/winner.png"
+						className={'winFighter'}
+						map={MAP1}
+					/>
+					{/* <img src="assets/winner.png" map="fightermap"></img>
+					<map name="fightermap">
+						<area shape="circle" coords="30,30,30"  alt="fighter"/>
+					</map> */}
+					<ImageMapper
+						width={60}
+						onClick={checkAuthAndVote}
+						src="assets/winner.png"
+						className={'favFighter'}
+						map={MAP2}
+					/>
+				</ButtonsWrapper>
 			<FighterDescription>
 				{fighter}
 			</FighterDescription>
-			<FighterImage imgUrl={fighterPhoto} />
-			<FighterControl>
-				<Buttons>
-					<Button className="favoriteFighter" onClick={checkAuthAndVote}>Fav</Button>
-					<Button className="winFighter" onClick={checkAuthAndVote}>Win</Button>
-				</Buttons>
-				<div>Favorite of </div>
-				<div>Favorite of </div>
-			</FighterControl>
 		</Fighter>
 	);
 };
