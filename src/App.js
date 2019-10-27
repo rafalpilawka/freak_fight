@@ -1,15 +1,15 @@
-import React from 'react';
+import React  from 'react';
 import './App.css';
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
 } from 'react-router-dom';
-import Navigation from 'components/Navigation/Navigation';
-import FightsList from './components/FightsList/FightsList';
+import Navigation from 'Components/FreakFight/Footer/Navigation/Navigation';
+import FightsList from './Components/FreakFight/FightsList/FightsList';
 import styled from 'styled-components';
-import Footer from './components/Footer/Footer';
-import Admin from 'components/Admin/Admin'
+import Footer from './Components/FreakFight/Footer/Footer';
+import Admin from 'Components/Admin/Admin'
 
 const AppStyle = styled.div`
 {
@@ -31,7 +31,7 @@ function App() {
 					<Route exact path="/admin" component={Admin}/>
 					</AppStyle>
 				</Switch>
-				{/* <Footer /> */}
+				<Footer />
 			</Router>
 		</div>
 	);

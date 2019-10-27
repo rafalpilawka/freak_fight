@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, FormGroup, Label, Button } from 'reactstrap';
+import { FighterContext } from 'Components/Admin/Context/FighterContext'
+import { InfoContext } from 'Components/Admin/Context/InfoContext'
 
 const FormGroupContainer = styled.div`
 	 {
@@ -53,36 +55,47 @@ const Input = styled.input`
 	}
 `;
 
-const FighterForm = ({formHelper, fighterId}) => {
+const FighterForm = () => {
+ 
+  const { store } = useContext(InfoContext)
+  console.log(store) 
 
-  const [fighter, setFighter] = useState(
-    {
-      name: '',
-      nick: '',
-      weight: '',
-      height: '',
-      last_fight:''
-    }
-  )
-  console.log(fighterId)
+  // const [fighter, setFighter] = useState(
+  //   {
+  //     name: '',
+  //     nick: '',
+  //     weight: '',
+  //     height: '',
+  //     last_fight:'',
+  //     fighterImg:''
+  //   }
+  // )
+
+  // console.log(fighterId)
   
-  const updateFighterHandler = e => {
-    e.preventDefault();
-    const edit = { ...fighter };
-    edit[e.target.id] = e.target.value;
-    setFighter({ ...edit });
-  };
-
-  const onSubmit = (e) =>{
-    e.preventDefault()
-    formHelper(fighterId, fighter)
-  }
+  // const updateFighterHandler = e => {
+  //   e.preventDefault();
+  //   const edit = { ...fighter };
+  //   edit[e.target.id] = e.target.value;
+  //   setFighter({ ...edit });
+  // };
 
   return (
-    <Form>
+    <>
+    <h1>Szukamy kontekstu</h1>
+    </>
+     
+  )
+}
+
+export default FighterForm
+
+
+{/* <Form> 
+
     <FighterContainer className="fighterContainer">
       <FormGroupContainer className="formgroupcontainer">
-        <Label for="nick">Fighter nick</Label>
+        <Label for="nick">Fighter nick.</Label>
         <Input
           type="text"
           name="nick"
@@ -93,7 +106,7 @@ const FighterForm = ({formHelper, fighterId}) => {
         />
       </FormGroupContainer>
       <FormGroupContainer>
-        <Label for="name">Fighter name</Label>
+        <Label for="name">Fighter name.</Label>
         <Input
           type="text"
           name="name"
@@ -103,7 +116,7 @@ const FighterForm = ({formHelper, fighterId}) => {
         />
       </FormGroupContainer>
       <FormGroupContainer>
-        <Label for="fighter1Photo">Fighter weight</Label>
+        <Label for="fighter1Photo">Fighter weight.</Label>
         <Input
           type="text"
           name="weight"
@@ -113,7 +126,7 @@ const FighterForm = ({formHelper, fighterId}) => {
         />
       </FormGroupContainer>
       <FormGroupContainer>
-        <Label for="height">Fighter height</Label>
+        <Label for="height">Fighter height.</Label>
         <Input
           type="text"
           name="height"
@@ -132,10 +145,15 @@ const FighterForm = ({formHelper, fighterId}) => {
           onChange={updateFighterHandler.bind(this)}
         />
       </FormGroupContainer>
+      <FormGroupContainer>
+        <Label for="fighterIMg">Fighter photo.</Label>
+        <Input
+          type="text"
+          name="fighterImg"
+          id="fighterImg"
+          value={fighter.fighterImg}
+          onChange={updateFighterHandler.bind(this)}
+        />
+      </FormGroupContainer>
     </FighterContainer>
-    <Button onClick={onSubmit} >Submit</Button>
-    </Form>
-  )
-}
-
-export default FighterForm
+    </Form> */}

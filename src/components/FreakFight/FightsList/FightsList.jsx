@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Fight from 'components/FightsList/Fight/Fight';
+import Fight from 'Components/FreakFight/FightsList/Fight/Fight';
 import styled from 'styled-components';
-import FirebaseContext from 'firebase/context';
+import FirebaseContext from 'Firebase/FreakFight/context'
 import Modal from 'react-modal';
-import Authorization from 'components/Navigation/Authorization/Authorization';
+import Authorization from 'Components/FreakFight/Footer/Navigation/Authorization/Authorization';
 
 const customStyles = {
 	content: {

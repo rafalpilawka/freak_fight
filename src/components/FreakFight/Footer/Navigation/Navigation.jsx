@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from './freakfight_logo22.svg';
-import Authorization from 'components/Navigation/Authorization/Authorization';
-import FirebaseContext from 'firebase/context';
+import { ReactComponent as Logo } from 'Components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
+import Authorization from 'Components/FreakFight/Footer/Navigation/Authorization/Authorization';
+import FirebaseContext from 'Firebase/FreakFight/context';
 
 const Nav = styled.div`
 {

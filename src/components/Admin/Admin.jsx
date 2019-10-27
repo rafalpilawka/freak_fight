@@ -1,9 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, createContext } from 'react';
 import { Form, FormGroup, Label } from 'reactstrap';
 import styled from 'styled-components';
-import FirebaseContext from 'firebase/context';
-import FighterForm from 'components/Admin/FighterForm'
-
+import FirebaseContext from 'Firebase/FreakFight/context'
+import FighterContextProvider from 'Components/Admin/Context/FighterContext'
+import InfoContextProvider from 'Components/Admin/Context/InfoContext'
+import FighterForm from 'Components/Admin/FighterForm';
+import {Route} from 'react-router-dom'
 
 const FormContainer = styled.div`
 	 {
@@ -90,21 +92,20 @@ const FormGroupContainer = styled.div`
 	}
 `;
 
+export const FighterContext = createContext({})
+
 const Admin = () => {
+
 	const [fight, setFight] = useState({
 		favFighter: [],
 		favFighter: [],
 		fighter1: {},
-		fighter1Photo: '',
 		fighter2: {},
-		fighter2Photo: '',
 		votesForFav: [],
 		votesForWin: [],
 		winFighter1: [],
 		winFighter2: []
   });
-  // const {name , nick , weight, height, last_fight} = fight.fighter
-	const { addFighterHandler } = useContext(FirebaseContext);
 
 	const updateFightHandler = e => {
     e.preventDefault();
@@ -112,12 +113,12 @@ const Admin = () => {
     const edit = { ...fight };
 		edit[e.target.id] = e.target.value;
     setFight({ ...edit });
-
 	};
 
 	const addFightSubmit = e => {
-		e.preventDefault();
-		addFighterHandler(fight);
+    e.preventDefault();
+    console.log(fight)
+		// addFighterHandler(fight);
 		setFight(
 			{
 				favFighter: [],
@@ -134,116 +135,29 @@ const Admin = () => {
 		);
   };
   
-
   const formHelper = (fighter, data) =>{
     console.log('zz99', fighter, data)
     setFight({
       ...fight,
       [`${fighter}`]: data
     })
-
   }
 
 	return (
 		<Form style={{ width: '50%' }}>
 			<FormContainer className="FormContainer">
-				{/* <FighterContainer className="fighterContainer">
-					<FormGroupContainer className="formgroupcontainer">
-						<Label for="fighter1nick">Fighter nick</Label>
-						<Input
-							type="text"
-							name="fighter1nick"
-							id='fighter1.nick'
-							value={fight.fighter1.name}
-							onChange={updateFightHandler.bind(this)}
-							required
-						/>
-					</FormGroupContainer>
-					<FormGroupContainer>
-						<Label for="fighter1name">Fighter name</Label>
-						<Input
-							type="text"
-							name="fighter1name"
-							id="fighter1.name"
-							value={fight.fighter1.name}
-							onChange={updateFightHandler.bind(this)}
-						/>
-					</FormGroupContainer>
-					<FormGroupContainer>
-						<Label for="fighter1height">Fighter height</Label>
-						<Input
-							type="text"
-							name="fighter1height"
-							id="fighter1.height"
-							value={fight.fighter1.height}
-							onChange={updateFightHandler.bind(this)}
-						/>
-					</FormGroupContainer>
-					<FormGroupContainer>
-						<Label for="fighter1weight">Fighter weight</Label>
-						<Input
-							type="text"
-							name="fighter1weight"
-							id="fighter1.weight"
-							value={fight.fighter1.weight}
-							onChange={updateFightHandler.bind(this)}
-						/>
-					</FormGroupContainer>
-					<FormGroupContainer>
-						<Label for="fighter1last_fight">Fighter last fight</Label>
-						<Input
-							type="text"
-							name="fighter1last_fight"
-							id="fighter1.last_fight"
-							value={fight.fighter1last_fight}
-							onChange={updateFightHandler.bind(this)}
-						/>
-					</FormGroupContainer>
-
-
-          <FormGroupContainer>
-            <Label for="fighter1Photo">Fighter Img src</Label>
-            <Input
-              type="text"
-              name="fighter1IMG"
-              id="fighter1Photo"
-              value={fight.fighter1Photo}
-              onChange={updateFightHandler.bind(this)}
-            />
-          </FormGroupContainer>
-				</FighterContainer> */}
-
-				 {/* <FighterContainer>
-					<FormGroupContainer>
-						<Label for="fighter2">Fighter 2</Label>
-						<Input
-							type="text"
-							name="fighter2"
-							id="fighter2"
-							value={fight.fighter2}
-							onChange={updateFightHandler.bind(this)}
-							required
-						/>
-					</FormGroupContainer>
-					<FormGroupContainer>
-						<Label for="fighter2Photo">Fighter 2 Img src</Label>
-						<Input
-							type="text"
-							name="fighter2Photo"
-							id="fighter2Photo"
-							value={fight.fighter2Photo}
-							onChange={updateFightHandler.bind(this)}
-						/>
-					</FormGroupContainer>
-				</FighterContainer> */}
 				<SubmitContainer onClick={addFightSubmit.bind(this)}>
 					Add fight
 				</SubmitContainer>
-
-        <FighterForm formHelper={formHelper} fighterId={'fighter1'}></FighterForm> 
-        <FighterForm formHelper={formHelper} fighterId={'fighter2'}></FighterForm> 
+				<InfoContextProvider >
+					{store => <FighterForm store = {store} />} />
+        </InfoContextProvider>
+        {/* <FighterContextProvider >
+					{(props) => <FighterForm {...props} />}
+        </FighterContextProvider> */}
 			</FormContainer>
 		</Form>
+
 	);
 };
 

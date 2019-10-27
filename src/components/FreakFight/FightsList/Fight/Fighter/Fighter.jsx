@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
-import FirebaseContext from 'firebase/context';
-import { ReactComponent as WinnerLogo } from '../../../../assets/winner.svg';
+import FirebaseContext from 'Firebase/FreakFight/context';
+import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
 import ImageMapper from 'react-image-mapper';
 
 const Fighter = styled.div`

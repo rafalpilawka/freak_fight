@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Fighter from 'components/FightsList/Fight/Fighter/Fighter';
-import { ReactComponent as VS } from 'components/FightsList/Fight/vslogo.svg'
+import Fighter from 'Components/FreakFight/FightsList/Fight/Fighter/Fighter';
+import { ReactComponent as VS } from 'Components/FreakFight/FightsList/Fight/vslogo.svg'
 
 const FightWrapper = styled.div`
 {

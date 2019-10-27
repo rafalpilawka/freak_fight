@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import FirebaseContext from 'firebase/context';
+import React, {useState, useContext, useEffect} from 'react'
+import FirebaseContext from 'Firebase/FreakFight/context'
 
 const LoginStatusContainer = styled.div`
 {
