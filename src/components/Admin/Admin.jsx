@@ -3,9 +3,11 @@ import { Form, FormGroup, Label } from 'reactstrap';
 import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context'
 import FighterContextProvider from 'Components/Admin/Context/FighterContext'
-import InfoContextProvider from 'Components/Admin/Context/InfoContext'
+import {FighterContext} from 'Components/Admin/Context/FighterContext'
 import FighterForm from 'Components/Admin/FighterForm';
 import {Route} from 'react-router-dom'
+import { statement } from '@babel/template';
+import { Store } from 'tough-cookie';
 
 const FormContainer = styled.div`
 	 {
@@ -92,9 +94,9 @@ const FormGroupContainer = styled.div`
 	}
 `;
 
-export const FighterContext = createContext({})
-
 const Admin = () => {
+
+	// const {fighter1, fighter2} = useContext(FighterContext)
 
 	const [fight, setFight] = useState({
 		favFighter: [],
@@ -116,23 +118,25 @@ const Admin = () => {
 	};
 
 	const addFightSubmit = e => {
+
     e.preventDefault();
-    console.log(fight)
+		console.log(fight)
+		
 		// addFighterHandler(fight);
-		setFight(
-			{
-				favFighter: [],
-				favFighter: [],
-				fighter1: {},
-				fighter1Photo: '',
-				fighter2: {},
-				fighter2Photo: '',
-				votesForFav: [],
-				votesForWin: [],
-				winFighter1: [],
-				winFighter2: []
-			},
-		);
+		// setFight(
+		// 	{
+		// 		favFighter: [],
+		// 		favFighter: [],
+		// 		fighter1: {},
+		// 		fighter1Photo: '',
+		// 		fighter2: {},
+		// 		fighter2Photo: '',
+		// 		votesForFav: [],
+		// 		votesForWin: [],
+		// 		winFighter1: [],
+		// 		winFighter2: []
+		// 	},
+		// );
   };
   
   const formHelper = (fighter, data) =>{
@@ -149,12 +153,12 @@ const Admin = () => {
 				<SubmitContainer onClick={addFightSubmit.bind(this)}>
 					Add fight
 				</SubmitContainer>
-				<InfoContextProvider >
-					{store => <FighterForm store = {store} />} />
-        </InfoContextProvider>
-        {/* <FighterContextProvider >
-					{(props) => <FighterForm {...props} />}
-        </FighterContextProvider> */}
+				<FighterContextProvider >	
+				 	<FighterForm id='fighter1'/>
+				</FighterContextProvider>
+				<FighterContextProvider >	
+				 	<FighterForm id='fighter2'/>
+				</FighterContextProvider>
 			</FormContainer>
 		</Form>
 

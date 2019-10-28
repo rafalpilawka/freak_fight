@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react'
+
 export const FighterContext = createContext();
 
 const FighterContextProvider = (props) => {
 
-  const [fighter1, setFighter1] = useState({
+  const [fighter1, setfighter1] = useState({
     name: '',
     nick: '',
     weight: '',
@@ -12,7 +13,7 @@ const FighterContextProvider = (props) => {
     fighterImg: ''
   });
 
-  const [fighter2, setFighter2] = useState({
+  const [fighter2, setfighter2] = useState({
     name: '',
     nick: '',
     weight: '',
@@ -22,7 +23,7 @@ const FighterContextProvider = (props) => {
   });
 
   return (
-    <FighterContext.Provider value= { fighter1, fighter2 , setFighter1, setFighter2 } >
+    <FighterContext.Provider value= { { fighter1, fighter2 , setfighter1, setfighter2 } } >
       {props.children}
     </FighterContext.Provider>
   )

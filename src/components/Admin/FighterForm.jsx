@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, FormGroup, Label, Button } from 'reactstrap';
 import { FighterContext } from 'Components/Admin/Context/FighterContext'
-import { InfoContext } from 'Components/Admin/Context/InfoContext'
+
 
 const FormGroupContainer = styled.div`
 	 {
@@ -55,10 +55,11 @@ const Input = styled.input`
 	}
 `;
 
-const FighterForm = () => {
+const FighterForm = ({id}) => {
  
-  const { store } = useContext(InfoContext)
-  console.log(store) 
+  const store  = useContext(FighterContext)
+  const fighter = store[`${id}`]
+  const setFighter = store[`set${id}`]
 
   // const [fighter, setFighter] = useState(
   //   {
@@ -73,25 +74,16 @@ const FighterForm = () => {
 
   // console.log(fighterId)
   
-  // const updateFighterHandler = e => {
-  //   e.preventDefault();
-  //   const edit = { ...fighter };
-  //   edit[e.target.id] = e.target.value;
-  //   setFighter({ ...edit });
-  // };
+  const updateFighterHandler = e => {
+    e.preventDefault();
+    const edit = { ...fighter };
+    edit[e.target.id] = e.target.value;
+    setFighter({ ...edit });
+  };
 
   return (
     <>
-    <h1>Szukamy kontekstu</h1>
-    </>
-     
-  )
-}
-
-export default FighterForm
-
-
-{/* <Form> 
+      <Form> 
 
     <FighterContainer className="fighterContainer">
       <FormGroupContainer className="formgroupcontainer">
@@ -156,4 +148,12 @@ export default FighterForm
         />
       </FormGroupContainer>
     </FighterContainer>
-    </Form> */}
+    </Form> 
+    </>
+     
+  )
+}
+
+export default FighterForm
+
+
