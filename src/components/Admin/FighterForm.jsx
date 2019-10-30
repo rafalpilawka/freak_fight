@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { withFormik } from "formik";
+import React from "react";
+import styled from 'styled-components'
 import { Form, FormGroup, Label, Button } from 'reactstrap';
-import { FighterContext } from 'Components/Admin/Context/FighterContext'
-
 
 const FormGroupContainer = styled.div`
 	 {
@@ -54,106 +53,99 @@ const Input = styled.input`
 		box-shadow: 0 0 10px red;
 	}
 `;
-
-const FighterForm = ({id}) => {
- 
-  const store  = useContext(FighterContext)
-  const fighter = store[`${id}`]
-  const setFighter = store[`set${id}`]
-
-  // const [fighter, setFighter] = useState(
-  //   {
-  //     name: '',
-  //     nick: '',
-  //     weight: '',
-  //     height: '',
-  //     last_fight:'',
-  //     fighterImg:''
-  //   }
-  // )
-
-  // console.log(fighterId)
-  
-  const updateFighterHandler = e => {
-    e.preventDefault();
-    const edit = { ...fighter };
-    edit[e.target.id] = e.target.value;
-    setFighter({ ...edit });
-  };
+function FighterForm(props) {
+  const { values, handleChange, onChange } = props;
+  // console.log(values)
+  React.useEffect(() => {
+    if (onChange) {
+      onChange(values);
+    }
+  }, [values]);
 
   return (
-    <>
-      <Form> 
+    <div className="form">
+      <FighterContainer className="fighterContainer">
+        <FormGroupContainer className="formgroupcontainer">
+          <Label for="nick">Fighter nick.</Label>
+          <Input
+            type="text"
+            name="nick"
+            id="nick"
+            value={values.nick}
+            onChange={handleChange}
+            required
+          />
+        </FormGroupContainer>
+        <FormGroupContainer>
+          <Label for="name">values name.</Label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            value={values.name}
+            onChange={handleChange}
+            required
+          />
+        </FormGroupContainer>
+        <FormGroupContainer>
+          <Label for="fighter1Photo">Fighter weight.</Label>
+          <Input
+            type="text"
+            name="weight"
+            id="weight"
+            value={values.weight}
+            onChange={handleChange}
+          />
+        </FormGroupContainer>
+        <FormGroupContainer>
+          <Label for="height">Fighter height.</Label>
+          <Input
+            type="text"
+            name="height"
+            id="height"
+            value={values.height}
+            onChange={handleChange}
+          />
+        </FormGroupContainer>
+        <FormGroupContainer>
+          <Label for="last_fight">Fighter last fight.</Label>
+          <Input
+            type="text"
+            name="last_fight"
+            id="last_fight"
+            value={values.last_fight}
+            onChange={handleChange}
+          />
+        </FormGroupContainer>
+        <FormGroupContainer>
+          <Label for="fighterIMg">Fighter photo.</Label>
+          <Input
+            type="text"
+            name="fighterImg"
+            id="fighterImg"
+            value={values.fighterImg}
+            onChange={handleChange}
+          />
+        </FormGroupContainer>
+      </FighterContainer>
+    </div>
 
-    <FighterContainer className="fighterContainer">
-      <FormGroupContainer className="formgroupcontainer">
-        <Label for="nick">Fighter nick.</Label>
-        <Input
-          type="text"
-          name="nick"
-          id="nick"
-          value={fighter.nick}
-          onChange={updateFighterHandler.bind(this)}
-          required
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="name">Fighter name.</Label>
-        <Input
-          type="text"
-          name="name"
-          id="name"
-          value={fighter.name}
-          onChange={updateFighterHandler.bind(this)}
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="fighter1Photo">Fighter weight.</Label>
-        <Input
-          type="text"
-          name="weight"
-          id="weight"
-          value={fighter.weight}
-          onChange={updateFighterHandler.bind(this)}
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="height">Fighter height.</Label>
-        <Input
-          type="text"
-          name="height"
-          id="height"
-          value={fighter.height}
-          onChange={updateFighterHandler.bind(this)}
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="last_fight">Fighter last fight.</Label>
-        <Input
-          type="text"
-          name="last_fight"
-          id="last_fight"
-          value={fighter.last_fight}
-          onChange={updateFighterHandler.bind(this)}
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="fighterIMg">Fighter photo.</Label>
-        <Input
-          type="text"
-          name="fighterImg"
-          id="fighterImg"
-          value={fighter.fighterImg}
-          onChange={updateFighterHandler.bind(this)}
-        />
-      </FormGroupContainer>
-    </FighterContainer>
-    </Form> 
-    </>
-     
-  )
+  );
 }
 
-export default FighterForm
+export default withFormik({
+  mapPropsToValues: () => {
+    return {
+      name: '',
+      nick: '',
+      weight: '',
+      height: '',
+      last_fight: '',
+      fighterImg: ''
+    };
+  }
+})(FighterForm);
+
+
 
 

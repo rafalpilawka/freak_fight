@@ -5,8 +5,8 @@ export const FightContext = createContext();
 const FightContextProvider = (props) => {
 
   const [fight, setFight] = useState({
-    favFighter: [],
-    favFighter: [],
+    favFighter1: [],
+    favFighter2: [],
     fighter1: {},
     fighter2: {},
     votesForFav: [],

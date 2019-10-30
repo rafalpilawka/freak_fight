@@ -1,26 +1,17 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
-import FighterContextProvider from 'Components/Admin/Context/FighterContext'
-import {FighterContext} from 'Components/Admin/Context/FighterContext'
-import FighterForm from 'Components/Admin/FighterForm';
-import FightForm from 'Components/Admin/FightForm'
-import FightContextProvider from 'Components/Admin/Context/FightContext';
-
-
+import FightFormFormik from 'Components/Admin/FightFormFormik'
+import SignIn from 'Components/Admin/SignIn'
 
 
 const Admin = () => {
 
 
 	return (
-		<FightContextProvider>
-		<FighterContextProvider>
-			<FightForm>
-				<FighterForm id='fighter1' />
-				<FighterForm id='fighter2' />
-			</FightForm>
-		</FighterContextProvider>
-		</FightContextProvider>
+		<SignIn/>
+	
 	);
 };
 
 export default Admin;
+
+{/* <FightFormFormik/> */ }

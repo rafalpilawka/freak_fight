@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FightContext } from 'Components/Admin/Context/FightContext';
 import { FighterContext } from 'Components/Admin/Context/FighterContext';
 import { Form } from 'reactstrap';
 import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context';
+
 
 const FormContainer = styled.div`
 	 {
@@ -66,13 +67,20 @@ const FightForm = props => {
 	const { fight, setFight } = useContext(FightContext);
 	const { fighter1, fighter2, setfighter1, setfighter2 } = useContext(
 		FighterContext
-	);
+  );
+  const [flag, setFlag]= useState({flag:false})
 
 	useEffect(
 		() => {
-			addFighterHandler(fight);
+      console.log('useEffect',flag)
+     if (flag.flag===true){
+        addFighterHandler(fight);
+        setFlag({flag: false})
+        console.log('INSIDE if statement')
+      }
+    //   return
 		},
-		[fight]
+		[flag]
 	);
 
 	const updateFightHandler = e => {
@@ -103,10 +111,14 @@ const FightForm = props => {
 			last_fight: '',
 			fighterImg: ''
 		});
-		setFight({ ...edit });
+    setFight({ ...edit });
+    setFlag({flag:true})
+    console.log(flag)
 	};
 
 	return (
+    <div>
+      <button onClick={() => { console.log(flag) }}>Flag check</button>
 		<Form style={{ width: '50%' }}>
 			<FormContainer className="FormContainer">
 				<SubmitContainer onClick={addFightSubmit.bind(this)}>
@@ -115,7 +127,8 @@ const FightForm = props => {
 				{props.children}
 			</FormContainer>
 		</Form>
-	);
-};
-
-export default FightForm;
+    </div>
+    );
+  };
+  
+  export default FightForm;

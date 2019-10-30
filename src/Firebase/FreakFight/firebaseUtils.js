@@ -35,11 +35,27 @@ class Firebase {
 		});
 	}
 
+	signInAdmin = (credentials) => {
+
+		return (dispatch, getState, { getFirebase }) => {
+			const firebase = getFirebase();
+
+			firebase.auth().signInWithEmailAndPassword(
+				credentials.email,
+				credentials.pswrd
+			).then(() => {
+				dispatch({ type: 'LOGIN_SUCCESS' })
+			}).catch(err => {
+				dispatch({ type: 'LOGIN_ERROR' }, err)
+			})
+		}
+	}
+
 	addFighterHandler = async(fight)=>{
-		console.log(fight)
 		const pointer = await this.firestore.collection('fights')
 		try {
 			pointer.doc().set({ ...fight })
+			console.log(fight)
 		} catch (error) {
 			console.log(error)
 		}
@@ -56,6 +72,7 @@ class Firebase {
 		let selector = '';
 		let voteArray = [];
 		let fighterVotesArray = [];
+
 
 		const voteLogic = (array, field, selector, fighterVotesArray) => {
 			let present = array.filter(vote => vote === userId);

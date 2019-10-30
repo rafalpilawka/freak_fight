@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Fight from 'Components/FreakFight/FightsList/Fight/Fight';
 import styled from 'styled-components';
-import FirebaseContext from 'Firebase/FreakFight/context'
+import { FirebaseContext } from 'Firebase/FreakFight/index'
 import Modal from 'react-modal';
 import Authorization from 'Components/FreakFight/Footer/Navigation/Authorization/Authorization';
 
