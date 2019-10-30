@@ -1,5 +1,5 @@
 import { withFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import { Form, FormGroup, Label, Button } from 'reactstrap';
 
@@ -25,10 +25,9 @@ const FighterContainer = styled.div`
 		align-items: center;
 		background-color: black;
 		color: white;
-		margin: 25px;
-		padding: 30px;
+
 		border-radius: 5px;
-		width: 100%;
+		${'' /* width: 90%; */}
 	}
 `;
 
@@ -55,8 +54,7 @@ const Input = styled.input`
 `;
 function FighterForm(props) {
   const { values, handleChange, onChange } = props;
-  // console.log(values)
-  React.useEffect(() => {
+  useEffect(() => {
     if (onChange) {
       onChange(values);
     }

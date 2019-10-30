@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react'
-import FighterForm from "Components/Admin/FighterForm";
-import styled from 'styled-components'
+import React, { useState, useContext } from 'react';
+import FighterForm from 'Components/Admin/FighterForm';
+import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context';
-
 
 const FormContainer = styled.div`
 	 {
-		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
 		heigth: 500px;
-		width: 100%;
+		width: 90%;
+		margin-top: 20px;
 	}
 `;
 const Button = styled.button`
@@ -37,63 +35,102 @@ const Button = styled.button`
 	}
 `;
 
+const FightersContainer = styled.div`
+	 {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 2em;
+		justify-items: center;
+
+		& .submit_button {
+			grid-column: 1/3;
+			margin: 15px;
+		}
+	}
+`;
+
+const Item = styled.div`
+	 {
+		justify-self: stretch;
+		justify-content: center;
+		align-items: center;
+
+		& p {
+			text-align: center;
+			justify-content: center;
+			padding: 0px;
+		}
+	}
+`;
+
 function FightFormFormik() {
-  const [formValues, setFormValues] = useState({
-    
-      favFighter1: [],
-      favFighter2: [],
-      fighter1: {
-        name: '',
-        nick: '',
-        weight: '',
-        height: '',
-        last_fight: '',
-        fighterImg: ''
-      },
-      fighter2: {
-        name: '',
-        nick: '',
-        weight: '',
-        height: '',
-        last_fight: '',
-        fighterImg: ''
-      },
-      votesForFav: [],
-      votesForWin: [],
-      winFighter1: [],
-      winFighter2: []
-  });
+	const [formValues, setFormValues] = useState({
+		favFighter1: [],
+		favFighter2: [],
+		fighter1: {
+			name: '',
+			nick: '',
+			weight: '',
+			height: '',
+			last_fight: '',
+			fighterImg: ''
+		},
+		fighter2: {
+			name: '',
+			nick: '',
+			weight: '',
+			height: '',
+			last_fight: '',
+			fighterImg: ''
+		},
+		votesForFav: [],
+		votesForWin: [],
+		winFighter1: [],
+		winFighter2: []
+	});
 
-  const { addFighterHandler } = useContext(FirebaseContext);
+	const { addFighterHandler } = useContext(FirebaseContext);
 
-  function handleFormAChange(values) {
-    setFormValues({
-      ...formValues,
-      fighter1: values
-    });
-  }
+	function handleFormAChange(values) {
+		setFormValues({
+			...formValues,
+			fighter1: values
+		});
+	}
 
-  function handleFormBChange(values) {
-    setFormValues({
-      ...formValues,
-      fighter2: values
-    });
-  }
+	function handleFormBChange(values) {
+		setFormValues({
+			...formValues,
+			fighter2: values
+		});
+	}
 
-  function handleSubmit() {
-    alert(JSON.stringify(formValues, null, 2));
-    addFighterHandler(formValues)
-  }
+	function handleSubmit() {
+		alert(JSON.stringify(formValues, null, 2));
+		addFighterHandler(formValues);
+	}
 
-  return (
-    
-    <FormContainer>
-      <Button onClick={handleSubmit}>Submit</Button>
-      <FighterForm onChange={handleFormAChange} />
-      <FighterForm onChange={handleFormBChange} />
-      {/* <Fighter2Form onChange={handleFormBChange} /> */}
-    </FormContainer >
-  );
+	return (
+		<FormContainer>
+			<FightersContainer>
+				<Item>
+					<p>FIGHTER ONE</p>
+				</Item>
+				<Item>
+					<p>FIGHTER TWO</p>
+				</Item>
+				<Item>
+					<FighterForm onChange={handleFormAChange} />
+				</Item>
+				<Item>
+					<FighterForm onChange={handleFormBChange} />
+				</Item>
+				<Button className="submit_button" onClick={handleSubmit}>
+					Add Fight
+				</Button>
+			</FightersContainer>
+		</FormContainer>
+	);
 }
 
-export default FightFormFormik
+export default FightFormFormik;

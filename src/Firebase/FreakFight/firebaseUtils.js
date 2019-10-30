@@ -36,19 +36,13 @@ class Firebase {
 	}
 
 	signInAdmin = (credentials) => {
-
-		return (dispatch, getState, { getFirebase }) => {
-			const firebase = getFirebase();
-
-			firebase.auth().signInWithEmailAndPassword(
+			this.auth.signInWithEmailAndPassword(
 				credentials.email,
-				credentials.pswrd
-			).then(() => {
-				dispatch({ type: 'LOGIN_SUCCESS' })
-			}).catch(err => {
-				dispatch({ type: 'LOGIN_ERROR' }, err)
+				credentials.password
+			).then(res=>console.log(res)
+			).catch(err => {
+			 console.log(err)
 			})
-		}
 	}
 
 	addFighterHandler = async(fight)=>{
