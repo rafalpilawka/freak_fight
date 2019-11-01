@@ -14,7 +14,7 @@ const FightWrapper = styled.div`
 
 
 & .fighter1grid {
-	grid-column: 1/4;
+	grid-column: 2/4;
 	grid-row: 1;
 }
 
@@ -33,7 +33,6 @@ const VSlogo = styled.div`{
 	z-index: 999;
 	@media only screen and (min-width: 700px) {
 	display: block;
-
 }
 }`
 

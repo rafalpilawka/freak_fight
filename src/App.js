@@ -13,15 +13,20 @@ import Admin from 'Components/Admin/Admin'
 
 const AppStyle = styled.div`
 {
-	${'' /* display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-direction: column;
-	background-color: black; */}
+
 	display: grid;
 	grid-template-rows: 80px auto 40px;
 	background-color: black;
 	grid-template-columns: auto;
+	font-size: 6px;
+
+	@media only screen and (min-width: 400px ) {
+		font-size: 8px;
+	}
+	@media only screen and (min-width: 850px) {
+		font-size: 18px;
+	}
+
 }
 `;
 

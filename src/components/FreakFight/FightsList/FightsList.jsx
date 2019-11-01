@@ -37,7 +37,6 @@ const FightsList = styled.div`
 	flex-direction: column;
 	${'' /* width: 80%; */}
 	background-color: black;
-	${'' /* padding-left: 100px; */}
 	& h1 {
 		font-family: 'Teko', sans-serif;
 		color: white;

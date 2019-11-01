@@ -31,7 +31,7 @@ const FighterImage = styled.img`
 	 {
 		background-size: cover;
 		display: flex;
-		${'' /* max-width: 100%; */}
+		max-width: 100%;
 		margin-top: 10px;
 		border-bottom: 1px solid white;
 	}
