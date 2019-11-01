@@ -28,11 +28,23 @@ const customStyles = {
 
 const FightsList = styled.div`
 {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	${'' /* position: relative; */}
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
 	align-content: center;
 	flex-direction: column;
-	width: 80%;
+	${'' /* width: 80%; */}
+	background-color: black;
+	${'' /* padding-left: 100px; */}
+	& h1 {
+		font-family: 'Teko', sans-serif;
+		color: white;
+		font-size: 5em;
+		padding: 0;
+		text-decoration: underline;
+	}
 }
 `;
 
@@ -65,7 +77,9 @@ const FightsListContainer = () => {
 
 	return (
         <>
+
 		<FightsList>
+				<h1>KTO WYGRA?</h1>
             {fights ? fightsArray : <div>Loading...</div>}
 		</FightsList>
         <Modal

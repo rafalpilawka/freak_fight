@@ -6,11 +6,10 @@ const Footer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: black;
-	height: 60px;
-	position: fixed;
+	background-color: white;
+	${'' /* height: 60px; */}
+	${'' /* position: fixed; */}
 	bottom: 0;
-	color: white;
 	width: 100%;
 p {
 	padding: 20px;

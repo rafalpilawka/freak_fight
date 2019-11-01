@@ -13,10 +13,14 @@ import Admin from 'Components/Admin/Admin'
 
 const AppStyle = styled.div`
 {
-	display: flex;
+	${'' /* display: flex;
 	align-items: center;
 	justify-content: space-between;
 	flex-direction: column;
+	background-color: black; */}
+	display: grid;
+	grid-template-rows: 80px auto 25px;
+	background-color: black;
 }
 `;
 
@@ -24,14 +28,14 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
+				<AppStyle>
 				<Navigation />
 				<Switch>
-					<AppStyle>
 					<Route exact path="/" component={FightsList} />
 					<Route exact path="/admin" component={Admin}/>
-					</AppStyle>
 				</Switch>
 				<Footer />
+				</AppStyle>
 			</Router>
 		</div>
 	);

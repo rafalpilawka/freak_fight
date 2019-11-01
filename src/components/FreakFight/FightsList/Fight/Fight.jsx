@@ -5,6 +5,13 @@ import { ReactComponent as VS } from 'Components/FreakFight/FightsList/Fight/vsl
 
 const FightWrapper = styled.div`
 {
+
+	display: grid;
+	grid-template-columns: 4fr 1fr 4fr;
+	background-color: black;
+
+
+${'' /* 	
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -13,7 +20,7 @@ const FightWrapper = styled.div`
 	border: 1px solid black;
 	margin-top: 25px;
 			position: relative;
-			padding: 0 100px;
+			padding: 0 100px; */}
 }
 `;
 
@@ -28,19 +35,21 @@ const Fight = ({ fight, modal, id }) => {
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter1}
-				fighterPhoto={fight.fighter1Photo}
+				fighterPhoto={fight.fighter1.fighterImg}
 				fightKey={id}
 				fighterId={1}
 				votes={fight.voteForWin}
-			/>
+				justifyContent={'flex-end'}
+		/>
             <VS />
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter2}
-				fighterPhoto={fight.fighter2Photo}
+				fighterPhoto={fight.fighter2.fighterImg}
 				fightKey={id}
 				fighterId={2}
 				votes={fight.voteForWin}
+				justifyContent={'flex-start'}
 			/>
 		</FightWrapper>
 	);

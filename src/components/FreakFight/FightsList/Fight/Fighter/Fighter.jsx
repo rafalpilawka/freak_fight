@@ -6,17 +6,21 @@ import FirebaseContext from 'Firebase/FreakFight/context';
 import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
 import ImageMapper from 'react-image-mapper';
 
+
+const FighterWrapper = styled.div`{
+		display: flex;
+		flex-direction: column;
+		align-items: ${props => props.justifyContent};
+}`
+
 const Fighter = styled.div`
 	 {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 		background-color: black;
 		color: white;
 		flex-basis: 300px;
-		width: 40%;
-		heigth: 100%;
-		flex-grow: 4;
 		flex-direction: column;
 	}
 `;
@@ -57,7 +61,7 @@ const FighterControl = styled.div`
 const ButtonsWrapper = styled.div`
 	 {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		flex-direction: row;
 		position: relative;
@@ -72,10 +76,11 @@ const FighterContainer = ({
 	modal,
 	fightKey,
 	fighterId,
-	fighterPhoto
+	fighterPhoto,
+	justifyContent
 }) => {
 
-	console.log(fighter)
+	console.log('--445', justifyContent)
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -122,7 +127,8 @@ const FighterContainer = ({
 	};
 
 	return (
-		<Fighter>
+		<FighterWrapper className='fighter-wrapper' justifyContent={justifyContent}>
+		<Fighter justifyContent={justifyContent}>
 			<FighterImage src={fighterPhoto} />
 				<ButtonsWrapper className='button-wrapper'>
 					<ImageMapper
@@ -136,18 +142,19 @@ const FighterContainer = ({
 					<map name="fightermap">
 						<area shape="circle" coords="30,30,30"  alt="fighter"/>
 					</map> */}
-					<ImageMapper
+					{/* <ImageMapper
 						width={60}
 						onClick={checkAuthAndVote}
 						src="assets/winner.png"
 						className={'favFighter'}
 						map={MAP2}
-					/>
+					/> */}
 				</ButtonsWrapper>
 			<FighterDescription>
 				{fighter.nick}
 			</FighterDescription>
 		</Fighter>
+		</FighterWrapper>
 	);
 };
 
