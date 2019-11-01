@@ -11,16 +11,18 @@ const FighterWrapper = styled.div`{
 		display: flex;
 		flex-direction: column;
 		align-items: ${props => props.justifyContent};
+		width: 100%;
+		height: 100%;
 }`
 
 const Fighter = styled.div`
 	 {
 		display: flex;
-		justify-content: flex-start;
+		${'' /* justify-content: flex-start; */}
 		align-items: center;
 		background-color: black;
 		color: white;
-		flex-basis: 300px;
+		${'' /* flex-basis: 100px; */}
 		flex-direction: column;
 	}
 `;
@@ -29,7 +31,7 @@ const FighterImage = styled.img`
 	 {
 		background-size: cover;
 		display: flex;
-		max-height: 300px;
+		${'' /* max-width: 100%; */}
 		margin-top: 10px;
 		border-bottom: 1px solid white;
 	}
@@ -41,7 +43,7 @@ const FighterDescription = styled.div`
 		text-align: center;
 		font-weight: bold;
 		text-transform: uppercase;
-		font-size: 4rem;
+		font-size: 4em;
 		font-family: 'Teko', sans-serif;
 		position: relative;
 		top: -2.5vh
@@ -80,7 +82,7 @@ const FighterContainer = ({
 	justifyContent
 }) => {
 
-	console.log('--445', justifyContent)
+	console.log('--445', fighterId)
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -127,7 +129,7 @@ const FighterContainer = ({
 	};
 
 	return (
-		<FighterWrapper className='fighter-wrapper' justifyContent={justifyContent}>
+		<FighterWrapper className={`fighter-wrapper fighter${fighterId}grid`} justifyContent={justifyContent}>
 		<Fighter justifyContent={justifyContent}>
 			<FighterImage src={fighterPhoto} />
 				<ButtonsWrapper className='button-wrapper'>

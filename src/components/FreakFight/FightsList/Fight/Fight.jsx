@@ -7,25 +7,34 @@ const FightWrapper = styled.div`
 {
 
 	display: grid;
-	grid-template-columns: 4fr 1fr 4fr;
+	grid-template-columns: 2fr 2fr 1fr 1fr 2fr 2fr;
 	background-color: black;
-
-
-${'' /* 	
-	display: flex;
-	justify-content: space-between;
+	justify-items: center;
 	align-items: center;
-	min-height: 400px;
-	background-color: black;
-	border: 1px solid black;
-	margin-top: 25px;
-			position: relative;
-			padding: 0 100px; */}
+
+
+& .fighter1grid {
+	grid-column: 1/4;
+	grid-row: 1;
+}
+
+& .fighter2grid {
+	grid-column: 4/6;
+	grid-row: 1;
+}
 }
 `;
 
-const VSlogo = styled.img`{
+const VSlogo = styled.div`{
+	display: absolute;
+	min-width: 100px;
+	grid-column: 3/5;
+	grid-row: 1;
+	z-index: 999;
+	@media only screen and (min-width: 700px) {
+	display: block;
 
+}
 }`
 
 
@@ -41,7 +50,8 @@ const Fight = ({ fight, modal, id }) => {
 				votes={fight.voteForWin}
 				justifyContent={'flex-end'}
 		/>
-            <VS />
+		<VSlogo><VS styles={{width: '100%'}} /></VSlogo>
+            
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter2}

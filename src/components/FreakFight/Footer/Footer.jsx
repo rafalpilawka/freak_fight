@@ -12,7 +12,8 @@ const Footer = styled.div`
 	bottom: 0;
 	width: 100%;
 p {
-	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	}
 }
 `;

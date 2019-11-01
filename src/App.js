@@ -19,8 +19,9 @@ const AppStyle = styled.div`
 	flex-direction: column;
 	background-color: black; */}
 	display: grid;
-	grid-template-rows: 80px auto 25px;
+	grid-template-rows: 80px auto 40px;
 	background-color: black;
+	grid-template-columns: auto;
 }
 `;
 
