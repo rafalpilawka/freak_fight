@@ -46,7 +46,7 @@ const FighterDescription = styled.div`
 		font-size: 4em;
 		font-family: 'Teko', sans-serif;
 		position: relative;
-		top: -2.5vh
+		top: -4vh
 	}
 `;
 
@@ -67,7 +67,7 @@ const ButtonsWrapper = styled.div`
 		align-items: center;
 		flex-direction: row;
 		position: relative;
-		top: -3vh;
+		top: -5vh;
 		width: 135px;
 		
 	}
@@ -82,7 +82,6 @@ const FighterContainer = ({
 	justifyContent
 }) => {
 
-	console.log('--445', fighterId)
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -140,17 +139,6 @@ const FighterContainer = ({
 						className={'winFighter'}
 						map={MAP1}
 					/>
-					{/* <img src="assets/winner.png" map="fightermap"></img>
-					<map name="fightermap">
-						<area shape="circle" coords="30,30,30"  alt="fighter"/>
-					</map> */}
-					{/* <ImageMapper
-						width={60}
-						onClick={checkAuthAndVote}
-						src="assets/winner.png"
-						className={'favFighter'}
-						map={MAP2}
-					/> */}
 				</ButtonsWrapper>
 			<FighterDescription>
 				{fighter.nick}

@@ -13,11 +13,15 @@ const Nav = styled.div`
 	background-color: black;
 	color: white;
 	width: 100%;
+	@media only screen and (max-width: 700px) {
+		align-content: flex-start;
+	}
+	
 }
 `;
 const LogoStyle = styled.div`
 {
-	padding: 10px;
+padding: 20px;
 }
 `;
 const NavigationLinks = styled.div`
@@ -26,8 +30,13 @@ const NavigationLinks = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	color: white !important;
-	padding-right: 10px;
+	color: white ;
+	padding-right: 30px;
+	font-size: 1em;
+
+	@media only screen and (max-width: 700px) {
+		display: none;
+	}
 }
 `;
 
@@ -38,6 +47,8 @@ padding: 15px;
 a{
 	text-decoration: none;
 	color: white;
+
+
 	}
 }
 `;
@@ -46,14 +57,11 @@ const Navigation = () => {
 	const { auth } = useContext(FirebaseContext);
 
 	return (
-		<Nav>
+		<Nav className='nav_bar'>
 				<LogoStyle>
-					<Link to='/'><Logo /></Link>
+					<Link className='linklogo' to='/'><Logo className='logo' /></Link>
 				</LogoStyle>
 				<NavigationLinks>
-						<NavlinkPad>
-							<Link to ='/admin'>Admin</Link>
-						</NavlinkPad>
 						<NavlinkPad>
 								<Link to="/archives">Arch</Link>
 						</NavlinkPad>

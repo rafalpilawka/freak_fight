@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { FirebaseContext } from 'Firebase/FreakFight/index'
 import Modal from 'react-modal';
 import Authorization from 'Components/FreakFight/Footer/Navigation/Authorization/Authorization';
+import { ReactComponent as Logo } from 'Components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
 
 const customStyles = {
 	content: {
@@ -14,8 +15,8 @@ const customStyles = {
 		marginRight: '-50%',
 		transform: 'translate(-50%, -50%)',
 		height: '500px',
-		zIndex: '999',
-		position: 'fixed',
+		zIndex: '997',
+		position: 'absolute',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
@@ -29,13 +30,11 @@ const customStyles = {
 const FightsList = styled.div`
 {
 	display: grid;
-	${'' /* position: relative; */}
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
 	align-content: center;
 	flex-direction: column;
-	${'' /* width: 80%; */}
 	background-color: black;
 	& h1 {
 		font-family: 'Teko', sans-serif;
@@ -82,14 +81,18 @@ const FightsListContainer = () => {
             {fights ? fightsArray : <div>Loading...</div>}
 		</FightsList>
         <Modal
+						
             isOpen={modalIsOpen.modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Authorization information">
+						<Logo style={{ width: '50%', height: '25%' }}></Logo>
+				
             <h3>Please login with Facebook</h3>
             <Authorization />
-            <button onClick={closeModal}>Exit without login</button>
-            <div />
+						
+						
+            <button onClick={closeModal}>Exit without login</button>   
         </Modal>
         </>
 	);

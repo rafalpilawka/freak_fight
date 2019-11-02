@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import {
 	BrowserRouter as Router,
@@ -10,7 +10,7 @@ import FightsList from './Components/FreakFight/FightsList/FightsList';
 import styled from 'styled-components';
 import Footer from './Components/FreakFight/Footer/Footer';
 import Admin from 'Components/Admin/Admin'
-
+import {Burger , Menu} from 'Components/FreakFight/Footer/Navigation/Menu/Menu'
 const AppStyle = styled.div`
 {
 
@@ -31,6 +31,8 @@ const AppStyle = styled.div`
 `;
 
 function App() {
+	const [open, setOpen] = React.useState(false);
+	const node = React.useRef();
 	return (
 		<div className="App">
 			<Router>
@@ -41,6 +43,10 @@ function App() {
 					<Route exact path="/admin" component={Admin}/>
 				</Switch>
 				<Footer />
+				<div ref={node}>
+					<Burger open={open} setOpen={setOpen} />
+					<Menu open={open} setOpen={setOpen} />
+				</div>
 				</AppStyle>
 			</Router>
 		</div>
