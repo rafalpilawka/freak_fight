@@ -41,7 +41,6 @@ const FightersContainer = styled.div`
 		grid-template-columns: 1fr 1fr;
 		grid-column-gap: 2em;
 		justify-items: center;
-
 		& .submit_button {
 			grid-column: 1/3;
 			margin: 15px;

@@ -35,25 +35,24 @@ class Firebase {
 		});
 	}
 
-	signInAdmin = (credentials) => {
-			this.auth.signInWithEmailAndPassword(
-				credentials.email,
-				credentials.password
-			).then(res=>console.log(res)
-			).catch(err => {
-			 console.log(err)
-			})
-	}
+	signInAdmin = credentials => {
+		this.auth
+			.signInWithEmailAndPassword(credentials.email, credentials.password)
+			.then(res => console.log(res))
+			.catch(err => {
+				console.log(err);
+			});
+	};
 
-	addFighterHandler = async(fight)=>{
-		const pointer = await this.firestore.collection('fights')
+	addFighterHandler = async fight => {
+		const pointer = await this.firestore.collection('fights');
 		try {
-			pointer.doc().set({ ...fight })
-			console.log(fight)
+			pointer.doc().set({ ...fight });
+			console.log(fight);
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
-	}
+	};
 
 	voteHandler = async (name, id, userId, arrayClass, fighterId) => {
 		const pointer = await this.firestore.collection(name).doc(id);
@@ -66,7 +65,6 @@ class Firebase {
 		let selector = '';
 		let voteArray = [];
 		let fighterVotesArray = [];
-
 
 		const voteLogic = (array, field, selector, fighterVotesArray) => {
 			let present = array.filter(vote => vote === userId);
@@ -109,7 +107,7 @@ class Firebase {
 					fighterVotesArray
 				);
 				break;
-			default:
+				default:
 				break;
 		}
 	};

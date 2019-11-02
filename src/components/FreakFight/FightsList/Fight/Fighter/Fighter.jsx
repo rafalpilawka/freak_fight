@@ -1,28 +1,25 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import FirebaseContext from 'Firebase/FreakFight/context';
 import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
 import ImageMapper from 'react-image-mapper';
 
-
-const FighterWrapper = styled.div`{
+const FighterWrapper = styled.div`
+	 {
 		display: flex;
 		flex-direction: column;
 		align-items: ${props => props.justifyContent};
 		width: 100%;
 		height: 100%;
-}`
+	}
+`;
 
 const Fighter = styled.div`
 	 {
 		display: flex;
-		${'' /* justify-content: flex-start; */}
 		align-items: center;
 		background-color: black;
 		color: white;
-		${'' /* flex-basis: 100px; */}
 		flex-direction: column;
 	}
 `;
@@ -46,7 +43,7 @@ const FighterDescription = styled.div`
 		font-size: 4em;
 		font-family: 'Teko', sans-serif;
 		position: relative;
-		top: -4vh
+		top: -4vh;
 	}
 `;
 
@@ -69,7 +66,6 @@ const ButtonsWrapper = styled.div`
 		position: relative;
 		top: -5vh;
 		width: 135px;
-		
 	}
 `;
 
@@ -81,7 +77,6 @@ const FighterContainer = ({
 	fighterPhoto,
 	justifyContent
 }) => {
-
 	const { auth, voteHandler } = useContext(FirebaseContext);
 
 	const checkAuthAndVote = e => {
@@ -128,10 +123,12 @@ const FighterContainer = ({
 	};
 
 	return (
-		<FighterWrapper className={`fighter-wrapper fighter${fighterId}grid`} justifyContent={justifyContent}>
-		<Fighter justifyContent={justifyContent}>
-			<FighterImage src={fighterPhoto} />
-				<ButtonsWrapper className='button-wrapper'>
+		<FighterWrapper
+			className={`fighter-wrapper fighter${fighterId}grid`}
+			justifyContent={justifyContent}>
+			<Fighter justifyContent={justifyContent}>
+				<FighterImage src={fighterPhoto} />
+				<ButtonsWrapper className="button-wrapper">
 					<ImageMapper
 						width={60}
 						onClick={checkAuthAndVote}
@@ -140,10 +137,10 @@ const FighterContainer = ({
 						map={MAP1}
 					/>
 				</ButtonsWrapper>
-			<FighterDescription>
-				{fighter.nick}
-			</FighterDescription>
-		</Fighter>
+				<FighterDescription>
+					{fighter.nick}
+				</FighterDescription>
+			</Fighter>
 		</FighterWrapper>
 	);
 };

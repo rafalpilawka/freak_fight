@@ -1,32 +1,29 @@
 import React, { useState, useRef } from 'react';
-import './App.css';
+import 'App.css';
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
 } from 'react-router-dom';
 import Navigation from 'Components/FreakFight/Footer/Navigation/Navigation';
-import FightsList from './Components/FreakFight/FightsList/FightsList';
+import FightsList from 'Components/FreakFight/FightsList/FightsList';
 import styled from 'styled-components';
-import Footer from './Components/FreakFight/Footer/Footer';
+import Footer from 'Components/FreakFight/Footer/Footer';
 import Admin from 'Components/Admin/Admin'
 import {Burger , Menu} from 'Components/FreakFight/Footer/Navigation/Menu/Menu'
-const AppStyle = styled.div`
-{
 
+const AppStyle = styled.div`{
 	display: grid;
 	grid-template-rows: 80px auto 40px;
 	background-color: black;
 	grid-template-columns: auto;
 	font-size: 6px;
-
 	@media only screen and (min-width: 400px ) {
 		font-size: 8px;
 	}
 	@media only screen and (min-width: 850px) {
 		font-size: 18px;
 	}
-
 }
 `;
 
@@ -40,7 +37,6 @@ function App() {
 				<Navigation />
 				<Switch>
 					<Route exact path="/" component={FightsList} />
-					{/* <Route exact path="/admin" component={Admin}/> */}
 					<Route exact path="/heroes" />
 					<Route exact path="/archive" />
 				</Switch>

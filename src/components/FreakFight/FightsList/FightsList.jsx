@@ -75,23 +75,18 @@ const FightsListContainer = () => {
 
 	return (
         <>
-
-		<FightsList>
-				<h1>KTO WYGRA?</h1>
-            {fights ? fightsArray : <div>Loading...</div>}
-		</FightsList>
+				<FightsList>
+						<h1>KTO WYGRA?</h1>
+								{fights ? fightsArray : <div>Loading...</div>}
+				</FightsList>
         <Modal
-						
             isOpen={modalIsOpen.modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Authorization information">
 						<Logo style={{ width: '50%', height: '25%' }}></Logo>
-				
             <h3>Please login with Facebook</h3>
-            <Authorization />
-						
-						
+            <Authorization />	
             <button onClick={closeModal}>Exit without login</button>   
         </Modal>
         </>
