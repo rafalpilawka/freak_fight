@@ -40,7 +40,9 @@ function App() {
 				<Navigation />
 				<Switch>
 					<Route exact path="/" component={FightsList} />
-					<Route exact path="/admin" component={Admin}/>
+					{/* <Route exact path="/admin" component={Admin}/> */}
+					<Route exact path="/heroes" />
+					<Route exact path="/archive" />
 				</Switch>
 				<Footer />
 				<div ref={node}>
