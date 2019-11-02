@@ -38,6 +38,7 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={FightsList} />
 					<Route exact path="/heroes" />
+					<Route exact path='/admin' component={Admin} />
 					<Route exact path="/archive" />
 				</Switch>
 				<Footer />

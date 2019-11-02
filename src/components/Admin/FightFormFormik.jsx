@@ -8,7 +8,7 @@ const FormContainer = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		heigth: 500px;
-		width: 90%;
+		width: 100%;
 		margin-top: 20px;
 	}
 `;
@@ -57,7 +57,10 @@ const Item = styled.div`
 		& p {
 			text-align: center;
 			justify-content: center;
-			padding: 0px;
+			padding: 0px !important;
+      color: white;
+      heigth: 100%;
+      font-size: 2em;
 		}
 	}
 `;
