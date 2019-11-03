@@ -5,7 +5,7 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 // import FighterForm from './Old forms/FighterFormOld';
 import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index';
 
-const Button = styled.button`
+const ButtonContainer = styled.button`
 	 {
 		padding: 2px 8px;
 		font-size: 1.2rem;
@@ -116,8 +116,7 @@ const SignIn = () => {
 					required
 				/>
 			</FormGroupContainer>
-			<Button onClick={handleSubmit}>Login</Button>
-			{/* </Form>  */}
+      <ButtonContainer onClick={handleSubmit}>Login</ButtonContainer>
 		</LoginContainer>
 	);
 };

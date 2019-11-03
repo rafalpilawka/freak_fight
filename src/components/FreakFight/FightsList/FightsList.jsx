@@ -27,7 +27,7 @@ const customStyles = {
 	}
 };
 
-const FightsList = styled.div`
+const FightsListContainer = styled.div`
 {
 	display: grid;
 	justify-content: center;
@@ -46,7 +46,7 @@ const FightsList = styled.div`
 }
 `;
 
-const FightsListContainer = () => {
+const FightsList = () => {
 	const Firebase = useContext(FirebaseContext);
 	const [fights, setFights] = useState([]);
 	const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false });
@@ -59,7 +59,13 @@ const FightsListContainer = () => {
 			}));
 			setFights(allFights);
 		});
+		
 	}, []);
+
+	useEffect(() => {
+		console.table(fights[0])
+	
+	}, [fights])
 
 	const closeModal = () => {
 		setToggleModal({ modalIsOpen: false });
@@ -75,10 +81,10 @@ const FightsListContainer = () => {
 
 	return (
         <>
-				<FightsList>
+				<FightsListContainer>
 						<h1>KTO WYGRA?</h1>
 								{fights ? fightsArray : <div>Loading...</div>}
-				</FightsList>
+				</FightsListContainer>
         <Modal
             isOpen={modalIsOpen.modalIsOpen}
             onRequestClose={closeModal}
@@ -93,4 +99,4 @@ const FightsListContainer = () => {
 	);
 };
 
-export default FightsListContainer;
+export default FightsList;

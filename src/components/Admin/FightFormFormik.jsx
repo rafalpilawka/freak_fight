@@ -12,7 +12,7 @@ const FormContainer = styled.div`
 		margin-top: 20px;
 	}
 `;
-const Button = styled.button`
+const ButtonContainer = styled.button`
 	 {
 		padding: 8px;
 		font-size: 1.5rem;
@@ -48,7 +48,7 @@ const FightersContainer = styled.div`
 	}
 `;
 
-const Item = styled.div`
+const ItemContainer = styled.div`
 	 {
 		justify-self: stretch;
 		justify-content: center;
@@ -115,21 +115,21 @@ function FightFormFormik() {
 	return (
 		<FormContainer>
 			<FightersContainer>
-				<Item>
+				<ItemContainer>
 					<p>FIGHTER ONE</p>
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<p>FIGHTER TWO</p>
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<FighterForm onChange={handleFormAChange} />
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<FighterForm onChange={handleFormBChange} />
-				</Item>
-				<Button className="submit_button" onClick={handleSubmit}>
+        </ItemContainer>
+        <ButtonContainer className="submit_button" onClick={handleSubmit}>
 					Add Fight
-				</Button>
+				</ButtonContainer>
 			</FightersContainer>
 		</FormContainer>
 	);

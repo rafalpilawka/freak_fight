@@ -31,7 +31,7 @@ const FighterContainer = styled.div`
 	}
 `;
 
-const Input = styled.input`
+const InputContainer = styled.input`
 	font-size: 16px;
 	border: solid 1px #dbdbdb;
 	border-radius: 3px;
@@ -65,7 +65,7 @@ function FighterForm(props) {
       <FighterContainer className="fighterContainer">
         <FormGroupContainer className="formgroupcontainer">
           <Label for="nick">Fighter nick.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="nick"
             id="nick"
@@ -76,7 +76,7 @@ function FighterForm(props) {
         </FormGroupContainer>
         <FormGroupContainer>
           <Label for="name">values name.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="name"
             id="name"
@@ -87,7 +87,7 @@ function FighterForm(props) {
         </FormGroupContainer>
         <FormGroupContainer>
           <Label for="fighter1Photo">Fighter weight.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="weight"
             id="weight"
@@ -97,7 +97,7 @@ function FighterForm(props) {
         </FormGroupContainer>
         <FormGroupContainer>
           <Label for="height">Fighter height.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="height"
             id="height"
@@ -107,7 +107,7 @@ function FighterForm(props) {
         </FormGroupContainer>
         <FormGroupContainer>
           <Label for="last_fight">Fighter last fight.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="last_fight"
             id="last_fight"
@@ -117,7 +117,7 @@ function FighterForm(props) {
         </FormGroupContainer>
         <FormGroupContainer>
           <Label for="fighterIMg">Fighter photo.</Label>
-          <Input
+          <InputContainer
             type="text"
             name="fighterImg"
             id="fighterImg"

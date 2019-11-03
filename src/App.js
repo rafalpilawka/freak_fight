@@ -12,7 +12,7 @@ import Footer from 'Components/FreakFight/Footer/Footer';
 import Admin from 'Components/Admin/Admin'
 import {Burger , Menu} from 'Components/FreakFight/Footer/Navigation/Menu/Menu'
 
-const AppStyle = styled.div`{
+const RootAppStyle = styled.div`{
 	display: grid;
 	grid-template-rows: 80px auto 40px;
 	background-color: black;
@@ -33,7 +33,7 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<AppStyle>
+				<RootAppStyle>
 				<Navigation />
 				<Switch>
 					<Route exact path="/" component={FightsList} />
@@ -46,7 +46,7 @@ function App() {
 					<Burger open={open} setOpen={setOpen} />
 					<Menu open={open} setOpen={setOpen} />
 				</div>
-				</AppStyle>
+				</RootAppStyle>
 			</Router>
 		</div>
 	);
