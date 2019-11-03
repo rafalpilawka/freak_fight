@@ -5,12 +5,12 @@ import {
 	Route,
 	Switch,
 } from 'react-router-dom';
-import Navigation from 'Components/FreakFight/Footer/Navigation/Navigation';
-import FightsList from './Components/FreakFight/FightsList/FightsList';
+import Navigation from 'components/FreakFight/Footer/Navigation/Navigation';
+import FightsList from 'components/FreakFight/FightsList/FightsList';
 import styled from 'styled-components';
-import Footer from './Components/FreakFight/Footer/Footer';
-import Admin from 'Components/Admin/Admin'
-import {Burger , Menu} from 'Components/FreakFight/Footer/Navigation/Menu/Menu'
+import Footer from 'components/FreakFight/Footer/Footer';
+// import Admin from 'components/Admin/Admin';
+import {Burger , Menu} from 'components/FreakFight/Footer/Navigation/Menu/Menu'
 const AppStyle = styled.div`
 {
 

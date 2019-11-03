@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Fight from 'Components/FreakFight/FightsList/Fight/Fight';
+import Fight from 'components/FreakFight/FightsList/Fight/Fight';
 import styled from 'styled-components';
 import { FirebaseContext } from 'Firebase/FreakFight/index'
 import Modal from 'react-modal';
-import Authorization from 'Components/FreakFight/Footer/Navigation/Authorization/Authorization';
-import { ReactComponent as Logo } from 'Components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
+import Authorization from 'components/FreakFight/Footer/Navigation/Authorization/Authorization';
+import { ReactComponent as Logo } from 'components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
 
 const customStyles = {
 	content: {
