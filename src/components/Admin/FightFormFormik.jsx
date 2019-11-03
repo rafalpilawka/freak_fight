@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import FighterForm from 'Components/Admin/FighterForm';
+import FighterForm from 'components/Admin/FighterForm';
 import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context';
 

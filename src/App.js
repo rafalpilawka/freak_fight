@@ -9,7 +9,7 @@ import Navigation from 'components/FreakFight/Footer/Navigation/Navigation';
 import FightsList from 'components/FreakFight/FightsList/FightsList';
 import styled from 'styled-components';
 import Footer from 'components/FreakFight/Footer/Footer';
-// import Admin from 'components/Admin/Admin';
+import Admin from 'components/Admin/Admin';
 import {Burger , Menu} from 'components/FreakFight/Footer/Navigation/Menu/Menu'
 
 const RootAppStyle = styled.div`{

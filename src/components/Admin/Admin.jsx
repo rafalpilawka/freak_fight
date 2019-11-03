@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import FightFormFormik from 'Components/Admin/FightFormFormik'
-import SignIn from 'Components/Admin/SignIn'
+import FightFormFormik from 'components/Admin/FightFormFormik'
+import SignIn from 'components/Admin/SignIn'
 import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index'
 
 const Admin = () => {
