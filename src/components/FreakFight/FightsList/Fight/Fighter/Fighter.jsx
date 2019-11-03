@@ -88,6 +88,24 @@ const ButtonContainer =styled.button`{
 	}
 }`
 
+const Ratio = styled.div`{
+    // Trzeba znalzesc odpowiednia czcionke ktora bedzie miala rowne odstepny 
+    font-family: 'Teko';
+    font-size: 6em;
+    background-color: ${props => props.ratio > 50 ? '#00c853' : 'grey' };
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    &:after{
+        content: "%";
+        font-size: 0.75em;
+    }
+}`
+
 const Fighter = ({
 	fighter,
 	modal,
@@ -126,11 +144,14 @@ const Fighter = ({
 			<FighterContainer justifyContent={justifyContent}>
 				<FighterImageContainer src={fighterPhoto} />
 				<ButtonsWrapper className="button-wrapper">
-					<ButtonContainer onClick={checkAuthAndVote} />
+					{/* <ButtonContainer onClick={checkAuthAndVote} /> */}
+                    <Ratio ratio={ratio}>
+                        {`${ratio}`}
+                    </Ratio>
 				</ButtonsWrapper>
 				<FighterDescriptionContainer>
 					{fighter.nick}
-					{`${ratio}%`}
+					
 				</FighterDescriptionContainer>
 			</FighterContainer>
 		</FighterWrapper>
