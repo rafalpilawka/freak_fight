@@ -27,7 +27,7 @@ const customStyles = {
 	}
 };
 
-const FightsList = styled.div`
+const FightsListContainer = styled.div`
 {
 	display: grid;
 	justify-content: center;
@@ -46,7 +46,7 @@ const FightsList = styled.div`
 }
 `;
 
-const FightsListContainer = () => {
+const FightsList = () => {
 	const Firebase = useContext(FirebaseContext);
 	const [fights, setFights] = useState([]);
 	const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false });
@@ -59,7 +59,13 @@ const FightsListContainer = () => {
 			}));
 			setFights(allFights);
 		});
+		
 	}, []);
+
+	useEffect(() => {
+		console.table(fights[0])
+	
+	}, [fights])
 
 	const closeModal = () => {
 		setToggleModal({ modalIsOpen: false });
@@ -75,27 +81,22 @@ const FightsListContainer = () => {
 
 	return (
         <>
-
-		<FightsList>
-				<h1>KTO WYGRA?</h1>
-            {fights ? fightsArray : <div>Loading...</div>}
-		</FightsList>
+				<FightsListContainer>
+						<h1>KTO WYGRA?</h1>
+								{fights ? fightsArray : <div>Loading...</div>}
+				</FightsListContainer>
         <Modal
-						
             isOpen={modalIsOpen.modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Authorization information">
 						<Logo style={{ width: '50%', height: '25%' }}></Logo>
-				
             <h3>Please login with Facebook</h3>
-            <Authorization />
-						
-						
+            <Authorization />	
             <button onClick={closeModal}>Exit without login</button>   
         </Modal>
         </>
 	);
 };
 
-export default FightsListContainer;
+export default FightsList;

@@ -1,13 +1,11 @@
-import { withFormik } from "formik";
-import React, { useState, useEffect, useContext } from "react";
-import styled, { createGlobalStyle } from 'styled-components'
+import { withFormik } from 'formik';
+import React, { useState, useEffect, useContext } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import FighterForm from "./Old forms/FighterFormOld";
-import Firebase, {FirebaseContext} from 'Firebase/FreakFight/index'
+// import FighterForm from './Old forms/FighterFormOld';
+import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index';
 
-
-
-const Button = styled.button`
+const ButtonContainer = styled.button`
 	 {
 		padding: 2px 8px;
 		font-size: 1.2rem;
@@ -16,11 +14,9 @@ const Button = styled.button`
 		color: white;
 		background-color: red;
 		position: relative;
-    margin:20px;
-
+		margin: 20px;
 
 		&:hover {
-			
 			color: #fdec6e;
 			box-shadow: 0px 0px 5px #fdec6e;
 			-moz-transition: all 0.2s ease-in;
@@ -45,9 +41,9 @@ const FormGroupContainer = styled.div`
 		font-family: 'Teko', sans-serif;
 		font-size: 1.5rem;
 
-    &input{
-      background-color: black !important;
-    }
+		&input {
+			background-color: black !important;
+		}
 	}
 `;
 
@@ -60,73 +56,69 @@ const LoginContainer = styled.div`
 		color: white;
 		margin: 25px;
 		width: 100%;
-    height: 40%;
+		height: 40%;
 	}
 `;
 
 const SignIn = () => {
+	const [credentials, setCredentials] = useState({ email: '', password: '' });
+	const { signInAdmin, auth } = useContext(FirebaseContext);
 
-  const [ credentials , setCredentials ] = useState({email: '', password:''});
-  const { signInAdmin, auth } = useContext(FirebaseContext)
+	const handleChange = e => {
+		setCredentials({
+			...credentials,
+			[e.target.id]: e.target.value
+		});
+	};
 
-  const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.id]: e.target.value
-    });
-  }
+	const handleSubmit = e => {
+		e.preventDefault();
+		signInAdmin(credentials);
+	};
 
-  const handleSubmit = (e) => { 
-    e.preventDefault()
-    signInAdmin(credentials)
-  }
+	return (
+		<LoginContainer>
+			<h3>
+				{'Login as admin for adding content'.toUpperCase()}
+			</h3>
+			<FormGroupContainer className="formgroupcontainer">
+				<Label for="nick">Email.</Label>
+				<Input
+					style={{
+						width: '20%',
+						height: '40px',
+						fontSize: '1em',
+						color: 'grey'
+					}}
+					className="input"
+					type="email"
+					name="email"
+					id="email"
+					value={credentials.name}
+					onChange={handleChange}
+					required
+				/>
+			</FormGroupContainer>
+			<FormGroupContainer>
+				<Label for="name">Password.</Label>
+				<Input
+					style={{
+						width: '20%',
+						height: '40px',
+						fontSize: '1em',
+						color: 'grey'
+					}}
+					type="password"
+					name="password"
+					id="password"
+					value={credentials.pass}
+					onChange={handleChange}
+					required
+				/>
+			</FormGroupContainer>
+      <ButtonContainer onClick={handleSubmit}>Login</ButtonContainer>
+		</LoginContainer>
+	);
+};
 
-  // useEffect(() => {
-  //   const authVar = auth.onAuthStateChanged(function (user) {
-  //     if (user) {
-  //       console.log(user);
-  //     } else {
-  //       console.log(user);
-  //     }
-  //   });
-  // });
-
-  return (
-   
-      <LoginContainer>
-      {/* <Form> */}
-      <h3>{('Login as admin for adding content').toUpperCase()}</h3>
-      <FormGroupContainer className="formgroupcontainer">
-        <Label for="nick">Email.</Label>
-        <Input
-          style={{width: '20%', height: '40px', fontSize: '1em', color: 'grey'}}
-          className="input"
-          type="email"
-          name="email"
-          id="email"
-          value={credentials.name}
-          onChange={handleChange}
-          required
-        />
-      </FormGroupContainer>
-      <FormGroupContainer>
-        <Label for="name">Password.</Label>
-        <Input
-          style={{ width: '20%', height: '40px', fontSize: '1em', color: 'grey' }}
-          type="password"
-          name="password"
-          id="password"
-          value={credentials.pass}
-          onChange={handleChange}
-          required
-        />
-      </FormGroupContainer>
-      <Button onClick={handleSubmit}>Login</Button>
-      {/* </Form>  */}
-    </LoginContainer>
-  )
-}
-
-export default SignIn
-
-
+export default SignIn;

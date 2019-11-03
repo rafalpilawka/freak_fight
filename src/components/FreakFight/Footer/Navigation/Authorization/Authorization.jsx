@@ -1,18 +1,20 @@
 import styled from 'styled-components';
-import React, {useState, useContext, useEffect} from 'react'
-import FirebaseContext from 'Firebase/FreakFight/context'
+import React, { useState, useContext, useEffect } from 'react';
+import FirebaseContext from 'Firebase/FreakFight/context';
 
 const LoginStatusContainer = styled.div`
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
+	 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
-const Button = styled.div`{
-	cursor: pointer;
-}`;
+const Button = styled.div`
+	 {
+		cursor: pointer;
+	}
+`;
 
 const AuthorizationContainer = () => {
 	const { auth, doSignInWithFacebook, doSignOut } = useContext(FirebaseContext);

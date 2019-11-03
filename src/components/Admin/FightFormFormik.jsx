@@ -8,11 +8,11 @@ const FormContainer = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		heigth: 500px;
-		width: 90%;
+		width: 100%;
 		margin-top: 20px;
 	}
 `;
-const Button = styled.button`
+const ButtonContainer = styled.button`
 	 {
 		padding: 8px;
 		font-size: 1.5rem;
@@ -41,7 +41,6 @@ const FightersContainer = styled.div`
 		grid-template-columns: 1fr 1fr;
 		grid-column-gap: 2em;
 		justify-items: center;
-
 		& .submit_button {
 			grid-column: 1/3;
 			margin: 15px;
@@ -49,7 +48,7 @@ const FightersContainer = styled.div`
 	}
 `;
 
-const Item = styled.div`
+const ItemContainer = styled.div`
 	 {
 		justify-self: stretch;
 		justify-content: center;
@@ -58,7 +57,10 @@ const Item = styled.div`
 		& p {
 			text-align: center;
 			justify-content: center;
-			padding: 0px;
+			padding: 0px !important;
+      color: white;
+      heigth: 100%;
+      font-size: 2em;
 		}
 	}
 `;
@@ -113,21 +115,21 @@ function FightFormFormik() {
 	return (
 		<FormContainer>
 			<FightersContainer>
-				<Item>
+				<ItemContainer>
 					<p>FIGHTER ONE</p>
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<p>FIGHTER TWO</p>
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<FighterForm onChange={handleFormAChange} />
-				</Item>
-				<Item>
+        </ItemContainer>
+        <ItemContainer>
 					<FighterForm onChange={handleFormBChange} />
-				</Item>
-				<Button className="submit_button" onClick={handleSubmit}>
+        </ItemContainer>
+        <ButtonContainer className="submit_button" onClick={handleSubmit}>
 					Add Fight
-				</Button>
+				</ButtonContainer>
 			</FightersContainer>
 		</FormContainer>
 	);

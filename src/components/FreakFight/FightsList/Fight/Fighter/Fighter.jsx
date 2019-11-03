@@ -1,33 +1,29 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import FirebaseContext from 'Firebase/FreakFight/context';
 import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
-import ImageMapper from 'react-image-mapper';
 
-
-const FighterWrapper = styled.div`{
+const FighterWrapper = styled.div`
+	 {
 		display: flex;
 		flex-direction: column;
 		align-items: ${props => props.justifyContent};
 		width: 100%;
 		height: 100%;
-}`
+	}
+`;
 
-const Fighter = styled.div`
+const FighterContainer = styled.div`
 	 {
 		display: flex;
-		${'' /* justify-content: flex-start; */}
 		align-items: center;
 		background-color: black;
 		color: white;
-		${'' /* flex-basis: 100px; */}
 		flex-direction: column;
 	}
 `;
 
-const FighterImage = styled.img`
+const FighterImageContainer = styled.img`
 	 {
 		background-size: cover;
 		display: flex;
@@ -37,7 +33,7 @@ const FighterImage = styled.img`
 	}
 `;
 
-const FighterDescription = styled.div`
+const FighterDescriptionContainer = styled.div`
 	 {
 		position: relative;
 		text-align: center;
@@ -46,11 +42,11 @@ const FighterDescription = styled.div`
 		font-size: 4em;
 		font-family: 'Teko', sans-serif;
 		position: relative;
-		top: -4vh
+		top: -4vh;
 	}
 `;
 
-const FighterControl = styled.div`
+const FighterControlContainer = styled.div`
 	 {
 		display: flex;
 		justify-content: space-between;
@@ -73,17 +69,36 @@ const ButtonsWrapper = styled.div`
 	}
 `;
 
-const FighterContainer = ({
+const ButtonContainer =styled.button`{
+	border: 4px solid white;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+	cursor: pointer;
+	background: url('assets/winner.png');
+	background-size: cover;
+	&:hover {
+		color: #fdec6e;
+		box-shadow: 0px 0px 20px yellow;
+		-moz-transition: all 0.2s ease-in;
+		-o-transition: all 0.2s ease-in;
+		-webkit-transition: all 0.2s ease-in;
+		transition: all 0.1s ease-in;
+		opacity: .9;
+	}
+}`
+
+const Fighter = ({
 	fighter,
 	modal,
 	fightKey,
 	fighterId,
 	fighterPhoto,
-	justifyContent
+	justifyContent,
+	ratio
 }) => {
-
 	const { auth, voteHandler } = useContext(FirebaseContext);
-
+	console.log('ratio-66',ratio)
 	const checkAuthAndVote = e => {
 		console.log(e);
 		fighter = e.className + fighterId;
@@ -104,48 +119,22 @@ const FighterContainer = ({
 		}
 	};
 
-	const MAP1 = {
-		name: `${fightKey + fighterId}win`,
-		areas: [
-			{
-				name: '1',
-				shape: 'circle',
-				coords: [30, 30, 30],
-				className: 'winFighter'
-			}
-		]
-	};
-	const MAP2 = {
-		name: `${fightKey + fighterId}fav`,
-		areas: [
-			{
-				name: '1',
-				shape: 'circle',
-				coords: [30, 30, 30],
-				className: 'favFighter'
-			}
-		]
-	};
-
 	return (
-		<FighterWrapper className={`fighter-wrapper fighter${fighterId}grid`} justifyContent={justifyContent}>
-		<Fighter justifyContent={justifyContent}>
-			<FighterImage src={fighterPhoto} />
-				<ButtonsWrapper className='button-wrapper'>
-					<ImageMapper
-						width={60}
-						onClick={checkAuthAndVote}
-						src="assets/winner.png"
-						className={'winFighter'}
-						map={MAP1}
-					/>
+		<FighterWrapper
+			className={`fighter-wrapper fighter${fighterId}grid`}
+			justifyContent={justifyContent}>
+			<FighterContainer justifyContent={justifyContent}>
+				<FighterImageContainer src={fighterPhoto} />
+				<ButtonsWrapper className="button-wrapper">
+					<ButtonContainer onClick={checkAuthAndVote} />
 				</ButtonsWrapper>
-			<FighterDescription>
-				{fighter.nick}
-			</FighterDescription>
-		</Fighter>
+				<FighterDescriptionContainer>
+					{fighter.nick}
+					{`${ratio}%`}
+				</FighterDescriptionContainer>
+			</FighterContainer>
 		</FighterWrapper>
 	);
 };
 
-export default FighterContainer;
+export default Fighter;
