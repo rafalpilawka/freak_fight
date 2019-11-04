@@ -59,13 +59,15 @@ const NavigationList =styled.div`{
   }
 }`
 
-export const Menu = ({ open }) => {
+export const Menu = ({ open , setOpen }) => {
+
   return (
     <StyledMenu open={open}>
       <NavigationList>
-      <Authorization />
-      <Link to="/archives">Archiwum</Link>
-      <Link to="/heroes">Hero</Link>
+        <Authorization onClick={() => setOpen(!open)}/>
+        <Link to="/" onClick={() => setOpen(!open)}>Main</Link>
+        <Link to="/archives" onClick={() => setOpen(!open)}>Archiwum</Link>
+        <Link to="/heroes" onClick={() => setOpen(!open)}>Hero</Link>
       </NavigationList>
     </StyledMenu>
   )
