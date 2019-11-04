@@ -24,8 +24,11 @@ class Firebase {
 	updateField = (name, id, obj) => {
 		this.firestore.collection(name).doc(id).update(obj);
 	};
-	getCollectionDoc = (name, id) =>
-		this.firestore.collection(name).doc(id).get();
+	getCollectionDoc = (name, id) => {
+		console.log(name, id);
+		this.firestore.collection(name).get();
+	};
+
 	doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider);
 	doSignOut = () => this.auth.signOut();
 
@@ -56,9 +59,15 @@ class Firebase {
 
 	voteHandler = async (name, id, userId, arrayClass, fighterId) => {
 		const pointer = await this.firestore.collection(name).doc(id);
+		const pointerUser = await this.firestore.collection('users').doc(userId);
 		const votingArray = await this.firestore
 			.collection(name)
 			.doc(id)
+			.get()
+			.then(res => res.data());
+		const votingArrayUser = await this.firestore
+			.collection('users')
+			.doc(userId)
 			.get()
 			.then(res => res.data());
 		let setvotingArray;
@@ -84,6 +93,17 @@ class Firebase {
 			return null;
 		};
 
+		const addToFightListUser = (array, fightId, pointer) => {
+			const userFightsArray = [...array.fights];
+			userFightsArray.push(fightId);
+			let arr = Array.from(new Set(userFightsArray));
+			try {
+				pointer.update({ fights: arr });
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
 		switch (arrayClass) {
 			case 'winFighter':
 				selector = 'votesForWin';
@@ -95,6 +115,7 @@ class Firebase {
 					selector,
 					fighterVotesArray
 				);
+				addToFightListUser(votingArrayUser, id, pointerUser);
 				break;
 			case 'favoriteFighter':
 				selector = 'votesForFav';
@@ -107,7 +128,7 @@ class Firebase {
 					fighterVotesArray
 				);
 				break;
-				default:
+			default:
 				break;
 		}
 	};

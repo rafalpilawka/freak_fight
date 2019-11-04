@@ -7,12 +7,16 @@ const LoginStatusContainer = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		justify-items: center;
+		cursor: pointer;
+		font-family: 'Roboto Mono', monospace;
+		text-transform: uppercase;
 	}
 `;
 
 const Button = styled.div`
 	 {
-		cursor: pointer;
+		
 	}
 `;
 
@@ -43,10 +47,8 @@ const AuthorizationContainer = () => {
 	};
 
 	return (
-		<LoginStatusContainer>
-			<Button onClick={signInWithFacebook}>
+		<LoginStatusContainer onClick={signInWithFacebook}>
 				{userAuth ? 'LogOut' : 'Log in'}
-			</Button>
 		</LoginStatusContainer>
 	);
 };

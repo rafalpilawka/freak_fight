@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import Authorization from 'components/FreakFight/Footer/Navigation/Authorization/Authorization'
+import {Link} from 'react-router-dom';
 
 const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-transform: uppercase;
   background: white;
   transform: ${({ open }) => open ? 'translateY(0%)' : 'translateY(-100%)'};
   height: 100vh;
@@ -21,10 +23,7 @@ const StyledMenu = styled.nav`
     }
 
   a {
-    font-size: 2rem;
     text-transform: uppercase;
-    padding: 2rem 0;
-    font-weight: bold;
     letter-spacing: 0.5rem;
     color: #0D0C1D;
     text-decoration: none;
@@ -40,19 +39,34 @@ const StyledMenu = styled.nav`
     }
   }
 `
+const NavigationList =styled.div`{
+  padding: 60px ;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-family: 'Roboto Mono', monospace;
+  & div{
+    padding:32px;
+  }
+  & a{
+  font-size: 20px;
+  padding: 32px;
+  text-align: center;
+  }
+}`
 
 export const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      <a href="/">
-        Archiwum
-      </a>
-      <a href="/Heroes">
-        Heroes
-        </a>
-      <a href="/">
-        Login
-        </a>
+      <NavigationList>
+      <Authorization />
+      <Link to="/archives">Archiwum</Link>
+      <Link to="/heroes">Hero</Link>
+      </NavigationList>
     </StyledMenu>
   )
 }
@@ -106,13 +120,13 @@ const StyledBurger = styled.button`
 
 export const Burger = ({ open, setOpen }) => {
   return (
-    // <div style={{display: 'flex', width:'100', flexDirection: 'row' , justifyContent: 'flex-end'}}>
+
       <StyledBurger className='styled-burger' open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
         <div />
       </StyledBurger>
-    // </div>
+
  
   )
 }

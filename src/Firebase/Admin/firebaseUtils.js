@@ -51,10 +51,7 @@ class Firebase {
   }
 
   signInAdmin = (credentials) => {
-
-    
       const firebase = getFirebase();
-
       firebase.auth().signInWithEmailAndPassword(
         credentials.email,
         credentials.password

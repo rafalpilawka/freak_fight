@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 import Fighter from 'components/FreakFight/FightsList/Fight/Fighter/Fighter';
 import { ReactComponent as VS } from 'components/FreakFight/FightsList/Fight/vslogo.svg'
 
@@ -29,24 +29,31 @@ const VSlogoContainer = styled.div`
 		min-width: 100px;
 		grid-column: 3/5;
 		grid-row: 1;
-		z-index: 7;
+		${'' /* z-index: 7; */}
 		position: relative;
 		@media only screen and (min-width: 700px) {
 			display: block;
+			max-width: 200px;
 		}
 	}
 `;
 
-const Fight = ({ fight, modal, id}) => {
+const Fight = ({ fight, modal, id, userFights, voted}) => {
 
-	const {winFighter1 , winFighter2} = fight;
-
+	const {winFighter1 , winFighter2} = fight;	
 	const getRatio = () => {
 		const ratioArray = new Array(2);
 		ratioArray[0] = winFighter1.length / (winFighter2.length + winFighter1.length) * 100
 		ratioArray[1] = 100 - ratioArray[0]
 		return ratioArray
 	}
+
+	const checkUserFightsArray = () => {
+		if(userFights){
+			const present = userFights.filter(fight => fight === id);
+			return present.length>0 ? true : false
+		}else {return false}
+	};
 
 	return (
 		<FightWrapper>
@@ -59,6 +66,7 @@ const Fight = ({ fight, modal, id}) => {
 				ratio={getRatio()[0]}
 				votes={fight.voteForWin}
 				justifyContent={'flex-end'}
+				voted={voted}
 			/>
 			<VSlogoContainer>
 				<VS styles={{ width: '100%' }} />
@@ -73,6 +81,7 @@ const Fight = ({ fight, modal, id}) => {
 				ratio={getRatio()[1]}
 				votes={fight.voteForWin}
 				justifyContent={'flex-start'}
+				voted={voted}
 			/>
 		</FightWrapper>
 	);

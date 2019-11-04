@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context';
 import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
@@ -56,6 +56,8 @@ const FighterControlContainer = styled.div`
 	}
 `;
 
+
+
 const ButtonsWrapper = styled.div`
 	 {
 		display: flex;
@@ -65,11 +67,11 @@ const ButtonsWrapper = styled.div`
 		position: relative;
 		top: -5vh;
 		width: 135px;
-		
 	}
 `;
 
-const ButtonContainer =styled.button`{
+
+const StyledButton = styled.button`{
 	border: 4px solid white;
 	border-radius: 50%;
 	width: 70px;
@@ -88,22 +90,32 @@ const ButtonContainer =styled.button`{
 	}
 }`
 
+
+
 const Ratio = styled.div`{
-    // Trzeba znalzesc odpowiednia czcionke ktora bedzie miala rowne odstepny 
-    font-family: 'Teko';
-    font-size: 6em;
+	
+		font-family: 'Roboto Mono', monospace;
+    font-size: 4.5em;
+		letter-spacing: -2px;
+		font-weight: bold ;
+		font-style: italic
     background-color: ${props => props.ratio > 50 ? '#00c853' : 'grey' };
     border: 2px solid white;
     border-radius: 50%;
     height: 60px;
     width: 60px;
     display: flex;
-	justify-content: center;
-	align-items: center;
+		justify-content: center;
+		align-items: center;
+		
     &:after{
         content: "%";
         font-size: 0.75em;
+				letter-spacing: 1px;
     }
+		@media only screen and (min-width: 700px) {
+			font-size: 2em;
+		}
 }`
 
 const Fighter = ({
@@ -113,20 +125,28 @@ const Fighter = ({
 	fighterId,
 	fighterPhoto,
 	justifyContent,
-	ratio
+	ratio,
+	voted
 }) => {
 	const { auth, voteHandler } = useContext(FirebaseContext);
-	console.log('ratio-66',ratio)
+	const [flag, setFlag] = useState(voted)
+
+	useEffect(()=>{
+    console.log("TCL: flag", flag)
+		setFlag(voted)
+    console.log("TCL: voted", voted)
+	})	
+
 	const checkAuthAndVote = e => {
-		console.log(e);
-		fighter = e.className + fighterId;
+		console.log(e)
+		fighter = e + fighterId;
 		if (auth.currentUser) {
 			try {
 				voteHandler(
 					'fights',
 					fightKey,
 					auth.currentUser.uid,
-					e.className,
+					e,
 					fighterId
 				);
 			} catch (error) {
@@ -143,11 +163,12 @@ const Fighter = ({
 			justifyContent={justifyContent}>
 			<FighterContainer justifyContent={justifyContent}>
 				<FighterImageContainer src={fighterPhoto} />
-				<ButtonsWrapper className="button-wrapper">
-					{/* <ButtonContainer onClick={checkAuthAndVote} /> */}
-                    <Ratio ratio={ratio}>
-                        {`${ratio}`}
-                    </Ratio>
+				<ButtonsWrapper className="winFighter">
+					{!flag ? <StyledButton  onClick={()=>checkAuthAndVote('winFighter')} /> :
+						<Ratio ratio={ratio}>
+							{`${ratio}`}
+						</Ratio>
+					}             
 				</ButtonsWrapper>
 				<FighterDescriptionContainer>
 					{fighter.nick}
@@ -157,5 +178,6 @@ const Fighter = ({
 		</FighterWrapper>
 	);
 };
+
 
 export default Fighter;
