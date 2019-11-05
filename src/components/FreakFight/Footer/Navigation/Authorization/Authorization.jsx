@@ -14,10 +14,27 @@ const LoginStatusContainer = styled.div`
 	}
 `;
 
-const Button = styled.div`
-	 {
-		
-	}
+const BtnFacebook = styled.button`
+    width: 135px;
+    height:35px;  
+    border-radius: 4px;
+    background: #3b5998;
+    color:white;
+    border:0px transparent;  
+    text-align: center;
+    margin:5px;
+    display: inline-block;
+
+    &:hover{
+        background: #3b5998;
+        opacity: 0.6;
+    }
+
+		@media only screen and (max-width : 600px) {
+        width: 250px;
+				height: 45px;
+				font-size: 15px;
+    }
 `;
 
 const AuthorizationContainer = () => {
@@ -52,8 +69,9 @@ const AuthorizationContainer = () => {
 
 	return (
 		<LoginStatusContainer onClick={signInWithFacebook}>
-				<div class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>	
-				{userAuth ? 'LogOut' : 'Login'}
+				{userAuth ? 
+				<BtnFacebook >&nbsp;&nbsp;Logout</BtnFacebook >
+				: <BtnFacebook >&nbsp;&nbsp;Sign In with Facebook</BtnFacebook >}
 		</LoginStatusContainer>
 	);
 };

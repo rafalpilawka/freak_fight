@@ -65,7 +65,7 @@ const Navigation = () => {
 								<Link to="/archives">Arch</Link>
 						</NavlinkPad>
 						<NavlinkPad>
-								<Link to="/heroes">Heros</Link>
+								<Link to="/heroes">Heroes</Link>
 						</NavlinkPad>
 						<Authorization isAuth={auth.currentUser} />
 				</NavigationLinks>

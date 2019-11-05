@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'react-modal';
 import Authorization from 'components/FreakFight/Footer/Navigation/Authorization/Authorization';
 import { ReactComponent as Logo } from 'components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
+import styled from 'styled-components'
 
 const customStyles = {
   content: {
@@ -11,18 +12,41 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    height: '500px',
+    height: '1000px',
     zIndex: '997',
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     flexDirection: 'column',
     color: 'white',
     backgroundColor: 'black',
     fontSize: 'medium'
   }
 };
+const ExitBtn = styled.button`
+    width: 135px;
+    height:35px;  
+    border-radius: 4px;
+    background: darkred;
+    color:white;
+    border:0px transparent;  
+    text-align: center;
+    margin:5px;
+    display: inline-block;
+
+    &:hover{
+        background: darkred;
+        opacity: 0.6;
+    }
+
+		@media only screen and (max-width : 600px) {
+        width: 250px;
+				height: 45px;
+				font-size: 15px;
+    }
+`;
+
 
 
 const ModalContainer = ({ modalIsOpen, closeModal}) => {
@@ -35,9 +59,9 @@ const ModalContainer = ({ modalIsOpen, closeModal}) => {
       style={customStyles}
       contentLabel="Authorization information">
       <Logo style={{ width: '50%', height: '25%' }}></Logo>
-      <h3>Please login with Facebook</h3>
+      <h4>Zaloguj się aby głosować <br /></h4>
       <Authorization />
-      <button onClick={closeModal}>Exit without login</button>
+      <ExitBtn onClick={closeModal}>Exit without login</ExitBtn>
     </Modal>
   )
 }
