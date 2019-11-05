@@ -21,7 +21,7 @@ const Button = styled.div`
 `;
 
 const AuthorizationContainer = () => {
-	const { auth, doSignInWithFacebook, doSignOut } = useContext(FirebaseContext);
+	const { auth, doSignInWithFacebook, doSignOut, addUserToDB } = useContext(FirebaseContext);
 	const [userAuth, setUserAuth] = useState(() => auth.currentUser);
 
 	useEffect(() => {
@@ -37,7 +37,11 @@ const AuthorizationContainer = () => {
 	const signInWithFacebook = () => {
 		if (!auth.currentUser) {
 			doSignInWithFacebook()
-				.then(socialAuthUser => setUserAuth(true))
+				.then(socialAuthUser => {
+        console.log("TCL: signInWithFacebook -> socialAuthUser", socialAuthUser)
+					 addUserToDB(socialAuthUser.user);
+					 })
+					// .then(setUserAuth(true))
 				.catch(err => console.log(err));
 		} else {
 			doSignOut()
@@ -48,7 +52,8 @@ const AuthorizationContainer = () => {
 
 	return (
 		<LoginStatusContainer onClick={signInWithFacebook}>
-				{userAuth ? 'LogOut' : 'Log in'}
+				<div class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>	
+				{userAuth ? 'LogOut' : 'Login'}
 		</LoginStatusContainer>
 	);
 };

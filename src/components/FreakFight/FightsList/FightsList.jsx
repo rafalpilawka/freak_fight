@@ -42,31 +42,33 @@ const FightsList = () => {
 				id: doc.id,
 				...doc.data()
 			}));
-			console.log("TCL: FightsList -> allFights", allFights)
 			setFights(allFights);
 		});
 	}, []);
 
 	useEffect(() => {
 		if(userAuth){
-			firestore.collection('users').onSnapshot(snapshot => {
-				const users = snapshot.docs
-					.map(doc => ({
-						id: doc.id,
-						...doc.data()
-					}));
-				const user = users.filter(user => user.id === userAuth)[0].fights
-				const matrix = fights.map(fight => user.some((el) => el === fight.id))
-				setVotedMatrix(matrix)
+			const setUpMatrix = async()=>{
+				await firestore.collection('users').onSnapshot(snapshot => {
+					const users = snapshot.docs
+						.map(doc => ({
+							id: doc.id,
+							...doc.data()
+						}));
+					const user = users.filter(user => user.id === userAuth)[0].fights
+					const matrix = fights.map(fight => user.some((el) => el === fight.id))
+					setVotedMatrix(matrix)
+				})
 			}
-				)	}
-	}, [userAuth, fights])
+		setUpMatrix()
+					}
+	}, [userAuth, fights,])
 
 	useEffect(() => {
 		auth.onAuthStateChanged(function (user) {
 			if (user) {
-					const userId = user.uid
-					setUserAuth(userId);
+				const userId = user.uid
+				setUserAuth(userId);
 			} else {
 				setVotedMatrix(null)
 				setUserAuth(null);

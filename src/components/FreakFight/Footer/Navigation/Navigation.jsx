@@ -33,6 +33,7 @@ const NavigationLinks = styled.div`
 	color: white ;
 	padding-right: 30px;
 	font-size: 1em;
+	text-transform: uppercase;
 
 	@media only screen and (max-width: 700px) {
 		display: none;
@@ -47,8 +48,6 @@ padding: 15px;
 a{
 	text-decoration: none;
 	color: white;
-
-
 	}
 }
 `;

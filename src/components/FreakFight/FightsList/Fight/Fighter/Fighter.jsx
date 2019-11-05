@@ -129,13 +129,6 @@ const Fighter = ({
 	voted
 }) => {
 	const { auth, voteHandler } = useContext(FirebaseContext);
-	const [flag, setFlag] = useState(voted)
-
-	useEffect(()=>{
-    console.log("TCL: flag", flag)
-		setFlag(voted)
-    console.log("TCL: voted", voted)
-	})	
 
 	const checkAuthAndVote = e => {
 		console.log(e)
@@ -164,7 +157,7 @@ const Fighter = ({
 			<FighterContainer justifyContent={justifyContent}>
 				<FighterImageContainer src={fighterPhoto} />
 				<ButtonsWrapper className="winFighter">
-					{!flag ? <StyledButton  onClick={()=>checkAuthAndVote('winFighter')} /> :
+					{!voted ? <StyledButton  onClick={()=>checkAuthAndVote('winFighter')} /> :
 						<Ratio ratio={ratio}>
 							{`${ratio}`}
 						</Ratio>

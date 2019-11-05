@@ -32,6 +32,23 @@ class Firebase {
 	doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider);
 	doSignOut = () => this.auth.signOut();
 
+
+	addUserToDB= async(user) =>{
+		const pointerUser = await this.firestore.collection('users').doc(user.uid).get()
+		const data = pointerUser.data()
+
+		if(!data){
+			const userDoc = {
+				name: user.displayName,
+				email: user.email,
+				fights: []
+			}
+		await this.firestore.collection('users').doc(user.uid).set({ ...userDoc });
+			console.log('we made it')
+		}
+
+	}
+
 	isInitialized() {
 		return new Promise(resolve => {
 			this.auth.onAuthStateChanged(resolve);

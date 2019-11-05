@@ -29,7 +29,6 @@ const VSlogoContainer = styled.div`
 		min-width: 100px;
 		grid-column: 3/5;
 		grid-row: 1;
-		${'' /* z-index: 7; */}
 		position: relative;
 		@media only screen and (min-width: 700px) {
 			display: block;
@@ -43,7 +42,7 @@ const Fight = ({ fight, modal, id, userFights, voted}) => {
 	const {winFighter1 , winFighter2} = fight;	
 	const getRatio = () => {
 		const ratioArray = new Array(2);
-		ratioArray[0] = winFighter1.length / (winFighter2.length + winFighter1.length) * 100
+		ratioArray[0] = Math.round(winFighter1.length / (winFighter2.length + winFighter1.length) * 100)
 		ratioArray[1] = 100 - ratioArray[0]
 		return ratioArray
 	}
