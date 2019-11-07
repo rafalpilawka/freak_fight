@@ -61,7 +61,7 @@ const ModalContainer = ({ modalIsOpen, closeModal}) => {
       <Logo style={{ width: '50%', height: '25%' }}></Logo>
       <h4>Zaloguj się aby głosować <br /></h4>
       <Authorization />
-      <ExitBtn onClick={closeModal}>Exit without login</ExitBtn>
+      <ExitBtn onClick={closeModal}>Zamknij okno</ExitBtn>
     </Modal>
   )
 }

@@ -29,7 +29,10 @@ class Firebase {
 		this.firestore.collection(name).get();
 	};
 
-	doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider);
+	doSignInWithFacebook = () => {
+		this.auth.signInWithPopup(this.facebookProvider).then(res=>this.addUserToDB(res.user))
+	};
+
 	doSignOut = () => this.auth.signOut();
 
 
@@ -44,8 +47,9 @@ class Firebase {
 				fights: []
 			}
 		await this.firestore.collection('users').doc(user.uid).set({ ...userDoc });
-			console.log('we made it')
+			console.log('we made it- user is added')
 		}
+		return console.log('we already have this user')
 
 	}
 

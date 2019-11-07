@@ -1,7 +1,6 @@
-// import { withFormik } from 'formik';
-import React, { useState, useEffect, useContext } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { useState,  useContext } from 'react';
+import styled from 'styled-components';
+import { Label, Input } from 'reactstrap';
 import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index';
 
 const ButtonContainer = styled.button`

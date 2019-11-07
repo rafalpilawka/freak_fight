@@ -16,7 +16,6 @@ const Nav = styled.div`
 	@media only screen and (max-width: 700px) {
 		align-content: flex-start;
 	}
-	
 }
 `;
 const LogoStyle = styled.div`

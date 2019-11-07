@@ -54,12 +54,6 @@ const AuthorizationContainer = () => {
 	const signInWithFacebook = () => {
 		if (!auth.currentUser) {
 			doSignInWithFacebook()
-				.then(socialAuthUser => {
-        console.log("TCL: signInWithFacebook -> socialAuthUser", socialAuthUser)
-					 addUserToDB(socialAuthUser.user);
-					 })
-					// .then(setUserAuth(true))
-				.catch(err => console.log(err));
 		} else {
 			doSignOut()
 				.then(res => setUserAuth(false))
@@ -70,8 +64,8 @@ const AuthorizationContainer = () => {
 	return (
 		<LoginStatusContainer onClick={signInWithFacebook}>
 				{userAuth ? 
-				<BtnFacebook >&nbsp;&nbsp;Logout</BtnFacebook >
-				: <BtnFacebook >&nbsp;&nbsp;Sign In with Facebook</BtnFacebook >}
+				<BtnFacebook >&nbsp;&nbsp;Wyloguj się</BtnFacebook >
+				: <BtnFacebook >&nbsp;&nbsp;Zaloguj się</BtnFacebook >}
 		</LoginStatusContainer>
 	);
 };

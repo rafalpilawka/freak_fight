@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Fight from 'components/FreakFight/FightsList/Fight/Fight';
 import styled from 'styled-components';
 import { FirebaseContext } from 'Firebase/FreakFight/index'
 import List from 'components/FreakFight/FightsList/List'
 import ModalContainer from 'components/FreakFight/FightsList/Modal'
-
 
 const FightsListContainer = styled.div`
 {
@@ -31,10 +29,6 @@ const FightsList = () => {
 	const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false });
 	const [userAuth, setUserAuth] =  useState(() => auth.currentUser );
 	const [votedMatrix, setVotedMatrix ] = useState(null)
-	
-	const checkUser = () => {
-		console.log(votedMatrix)
-	};
 
 	useEffect(() => {
 		firestore.collection('fights').onSnapshot(snapshot => {
@@ -44,25 +38,25 @@ const FightsList = () => {
 			}));
 			setFights(allFights);
 		});
-	}, []);
+	},[]);
 
 	useEffect(() => {
 		if(userAuth){
 			const setUpMatrix = async()=>{
-				await firestore.collection('users').onSnapshot(snapshot => {
-					const users = snapshot.docs
-						.map(doc => ({
-							id: doc.id,
-							...doc.data()
-						}));
-					const user = users.filter(user => user.id === userAuth)[0].fights
-					const matrix = fights.map(fight => user.some((el) => el === fight.id))
+				//IMPORTANT PART FOR CREATING DB USER 
+				await firestore.collection('users').doc(userAuth).onSnapshot(snapshot => {
+				console.log("TCL: setUpMatrix -> snapshot before if", snapshot.data())
+				if(snapshot.data()){
+          console.log("TCL: setUpMatrix -> snapshot in if ", snapshot)
+					const user = snapshot.data()
+					const matrix = fights.map(fight => user.fights.some((el) => el === fight.id))
 					setVotedMatrix(matrix)
+				}
 				})
 			}
 		setUpMatrix()
 					}
-	}, [userAuth, fights,])
+	}, [userAuth, fights])
 
 	useEffect(() => {
 		auth.onAuthStateChanged(function (user) {

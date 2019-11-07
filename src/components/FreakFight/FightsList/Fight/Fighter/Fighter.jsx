@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState} from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import FirebaseContext from 'Firebase/FreakFight/context';
-import { ReactComponent as WinnerLogo } from 'assets/winner.svg';
 
 const FighterWrapper = styled.div`
 	 {
@@ -46,18 +45,6 @@ const FighterDescriptionContainer = styled.div`
 	}
 `;
 
-const FighterControlContainer = styled.div`
-	 {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		flex-direction: column;
-		top: auto;
-	}
-`;
-
-
-
 const ButtonsWrapper = styled.div`
 	 {
 		display: flex;
@@ -69,7 +56,6 @@ const ButtonsWrapper = styled.div`
 		width: 135px;
 	}
 `;
-
 
 const StyledButton = styled.button`{
 	border: 4px solid white;
@@ -90,10 +76,7 @@ const StyledButton = styled.button`{
 	}
 }`
 
-
-
-const Ratio = styled.div`{
-	
+const Ratio = styled.div`{	
 		font-family: 'Roboto Mono', monospace;
     font-size: 4.5em;
 		letter-spacing: -2px;
@@ -106,8 +89,7 @@ const Ratio = styled.div`{
     width: 60px;
     display: flex;
 		justify-content: center;
-		align-items: center;
-		
+		align-items: center;	
     &:after{
         content: "%";
         font-size: 0.75em;
