@@ -12,7 +12,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    height: '1000px',
+    height: '500px',
     zIndex: '997',
     position: 'absolute',
     display: 'flex',
@@ -34,23 +34,21 @@ const ExitBtn = styled.button`
     text-align: center;
     margin:5px;
     display: inline-block;
+    font-weight: bold;
 
     &:hover{
         background: darkred;
         opacity: 0.6;
     }
 
-		@media only screen and (max-width : 600px) {
-        width: 250px;
+		@media only screen and (max-width : 650px) {
+        width: 135px;
 				height: 45px;
 				font-size: 15px;
     }
 `;
 
-
-
 const ModalContainer = ({ modalIsOpen, closeModal}) => {
-
 
   return (
     <Modal

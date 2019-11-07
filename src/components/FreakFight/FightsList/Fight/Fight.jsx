@@ -32,7 +32,7 @@ const VSlogoContainer = styled.div`
 		position: relative;
 		@media only screen and (min-width: 700px) {
 			display: block;
-			max-width: 200px;
+			max-width: 150px;
 		}
 	}
 `;

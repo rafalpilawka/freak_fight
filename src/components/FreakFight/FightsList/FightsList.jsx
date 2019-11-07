@@ -63,6 +63,9 @@ const FightsList = () => {
 			if (user) {
 				const userId = user.uid
 				setUserAuth(userId);
+				if(modalIsOpen.modalIsOpen){
+					closeModal()
+				}
 			} else {
 				setVotedMatrix(null)
 				setUserAuth(null);
@@ -80,7 +83,6 @@ const FightsList = () => {
 	return (
         <>
 				<FightsListContainer>
-				{/* <button onClick={checkUser}>Auth Check</button> */}
 						<h1>KTO WYGRA?</h1>
 							{fights ? <List fights={fights} votedMatrix={votedMatrix} fireModal={fireModal}/> : <div>Loading...</div>}
 				</FightsListContainer>

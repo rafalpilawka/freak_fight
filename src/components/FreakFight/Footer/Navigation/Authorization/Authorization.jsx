@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useContext, useEffect } from 'react';
 import FirebaseContext from 'Firebase/FreakFight/context';
+import {ReactComponent as FBlogo} from 'components/FreakFight/Footer/Navigation/Authorization/fb_ico.svg'
 
 const LoginStatusContainer = styled.div`
 	 {
@@ -11,29 +12,54 @@ const LoginStatusContainer = styled.div`
 		cursor: pointer;
 		font-family: 'Roboto Mono', monospace;
 		text-transform: uppercase;
+		cursor: pointer;
 	}
 `;
 
-const BtnFacebook = styled.button`
-    width: 135px;
-    height:35px;  
+const BtnFacebookContainer = styled.button`
+    ${'' /* width: 135px; */}
+		width: 135px;
+    height:35px; 
     border-radius: 4px;
     background: #3b5998;
     color:white;
     border:0px transparent;  
     text-align: center;
-    margin:5px;
-    display: inline-block;
+    display: flex;
+		justify-items: space-between;
+		align-items: center;
+		cursor: ponter;
+		font-weight: bold;
+		font-size: 14px;
+		padding: 0px;
+		padding-top: 0px;
 
     &:hover{
         background: #3b5998;
         opacity: 0.6;
     }
+		& .fb{
+			width: 20%;
+			padding: 0;
+			margin: 0px;
+			padding-left: 5%;
+		} 
+		& p{
+			height: 100%;
+			width: 100%;
+			margin: 0px;
+			z-index: 999;
+		}
 
-		@media only screen and (max-width : 600px) {
-        width: 250px;
+		@media only screen and (max-width : 650px) {
+        width: 135px;
 				height: 45px;
-				font-size: 15px;
+				font-size: 17px;
+				justify-items: space-between;
+				& p{
+					position: relative;
+					text-align: left;
+				}
     }
 `;
 
@@ -62,10 +88,18 @@ const AuthorizationContainer = () => {
 	};
 
 	return (
-		<LoginStatusContainer onClick={signInWithFacebook}>
+		<LoginStatusContainer 
+		onClick={signInWithFacebook}
+		>
 				{userAuth ? 
-				<BtnFacebook >&nbsp;&nbsp;Wyloguj się</BtnFacebook >
-				: <BtnFacebook >&nbsp;&nbsp;Zaloguj się</BtnFacebook >}
+				<BtnFacebookContainer className='btnface' >
+					<FBlogo className='fb'/>
+					<p>&nbsp;&nbsp;Wyloguj się</p>
+				</BtnFacebookContainer >
+				: <BtnFacebookContainer className='btnface'>
+				<FBlogo className='fb' />
+				<p>&nbsp;&nbsp;Zaloguj się</p>
+				</BtnFacebookContainer >}
 		</LoginStatusContainer>
 	);
 };
