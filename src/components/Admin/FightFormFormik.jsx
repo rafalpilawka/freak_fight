@@ -116,7 +116,7 @@ function FightFormFormik() {
 		<FormContainer>
 			<FightersContainer>
 				<ItemContainer>
-					<p>FIGHTER ONE</p>
+					<p data-testid='fighter'>FIGHTER ONE</p>
         </ItemContainer>
         <ItemContainer>
 					<p>FIGHTER TWO</p>

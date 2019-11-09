@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Firebase, { FirebaseContext } from './Firebase/FreakFight/index'
+import { Provider } from './Firebase/FreakFight/index'
 
 ReactDOM.render(
-        <FirebaseContext.Provider value={new Firebase()}>
+        <Provider>
                 <App />
-        </FirebaseContext.Provider>
+        </Provider>
         , document.getElementById('root'));
 serviceWorker.register();
 

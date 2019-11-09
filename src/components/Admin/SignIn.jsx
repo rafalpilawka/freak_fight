@@ -1,7 +1,7 @@
 import React, { useState,  useContext } from 'react';
 import styled from 'styled-components';
 import { Label, Input } from 'reactstrap';
-import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index';
+import { FirebaseContext } from 'Firebase/FreakFight/index';
 
 const ButtonContainer = styled.button`
 	 {
@@ -60,7 +60,7 @@ const LoginContainer = styled.div`
 
 const SignIn = () => {
 	const [credentials, setCredentials] = useState({ email: '', password: '' });
-	const { signInAdmin, auth } = useContext(FirebaseContext);
+	const { signInAdmin } = useContext(FirebaseContext);
 
 	const handleChange = e => {
 		setCredentials({

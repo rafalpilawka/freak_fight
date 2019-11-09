@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { FirebaseContext } from 'Firebase/FreakFight/index'
+import { useFirebase } from 'Firebase/FreakFight/index'
 import List from 'components/FreakFight/FightsList/List'
 import ModalContainer from 'components/FreakFight/FightsList/Modal'
 
@@ -24,7 +24,7 @@ const FightsListContainer = styled.div`
 `;
 
 const FightsList = () => {
-	const { firestore, auth }  = useContext(FirebaseContext);
+	const { firestore, auth }  = useFirebase();
 	const [fights, setFights] = useState([]);
 	const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false });
 	const [userAuth, setUserAuth] =  useState(() => auth.currentUser );

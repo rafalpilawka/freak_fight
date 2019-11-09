@@ -52,6 +52,7 @@ const ModalContainer = ({ modalIsOpen, closeModal}) => {
 
   return (
     <Modal
+      ariaHideApp={false}
       isOpen={modalIsOpen.modalIsOpen}
       onRequestClose={closeModal}
       style={customStyles}
@@ -63,5 +64,6 @@ const ModalContainer = ({ modalIsOpen, closeModal}) => {
     </Modal>
   )
 }
+
 
 export default ModalContainer

@@ -64,7 +64,7 @@ function FighterForm(props) {
     <div className="form">
       <FighterContainer className="fighterContainer">
         <FormGroupContainer className="formgroupcontainer">
-          <Label for="nick">Fighter nick.</Label>
+          <Label for="nick" data-testid='fighterNick'>Fighter nick.</Label>
           <InputContainer
             type="text"
             name="nick"

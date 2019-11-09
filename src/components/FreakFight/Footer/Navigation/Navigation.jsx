@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from 'components/FreakFight/Footer/Navigation/freakfight_logo22.svg';
 import Authorization from 'components/FreakFight/Footer/Navigation/Authorization/Authorization';
-import FirebaseContext from 'Firebase/FreakFight/context';
+import { useFirebase } from 'Firebase/FreakFight/index';
 
 const Nav = styled.div`
 {
@@ -52,8 +52,8 @@ a{
 `;
 
 const Navigation = () => {
-	const { auth } = useContext(FirebaseContext);
-
+	console.log(useFirebase)
+	const { auth } = useFirebase();
 	return (
 		<Nav className='nav_bar'>
 				<LogoStyle>

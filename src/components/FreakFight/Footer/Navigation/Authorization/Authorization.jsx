@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useContext, useEffect } from 'react';
-import FirebaseContext from 'Firebase/FreakFight/context';
+import {useFirebase} from 'Firebase/FreakFight/index';
 import {ReactComponent as FBlogo} from 'components/FreakFight/Footer/Navigation/Authorization/fb_ico.svg'
 
 const LoginStatusContainer = styled.div`
@@ -64,7 +64,7 @@ const BtnFacebookContainer = styled.button`
 `;
 
 const AuthorizationContainer = () => {
-	const { auth, doSignInWithFacebook, doSignOut, addUserToDB } = useContext(FirebaseContext);
+	const { auth, doSignInWithFacebook, doSignOut, addUserToDB } = useFirebase();
 	const [userAuth, setUserAuth] = useState(() => auth.currentUser);
 
 	useEffect(() => {

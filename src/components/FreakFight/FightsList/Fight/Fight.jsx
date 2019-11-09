@@ -47,12 +47,12 @@ const Fight = ({ fight, modal, id, userFights, voted}) => {
 		return ratioArray
 	}
 
-	const checkUserFightsArray = () => {
-		if(userFights){
-			const present = userFights.filter(fight => fight === id);
-			return present.length>0 ? true : false
-		}else {return false}
-	};
+	// const checkUserFightsArray = () => {
+	// 	if(userFights){
+	// 		const present = userFights.filter(fight => fight === id);
+	// 		return present.length>0 ? true : false
+	// 	}else {return false}
+	// };
 
 	return (
 		<FightWrapper>
