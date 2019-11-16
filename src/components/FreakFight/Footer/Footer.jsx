@@ -7,9 +7,6 @@ const Footer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
-	${'' /* height: 60px; */}
-	${'' /* position: fixed; */}
-	bottom: 0;
 	width: 100%;
 p {
 	padding-left: 20px;

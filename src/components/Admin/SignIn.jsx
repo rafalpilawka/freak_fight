@@ -1,7 +1,7 @@
-import React, { useState,  useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Label, Input } from 'reactstrap';
-import { FirebaseContext } from 'Firebase/FreakFight/index';
+import { useFirebase } from 'Firebase/FreakFight/index';
 
 const ButtonContainer = styled.button`
 	 {
@@ -60,7 +60,7 @@ const LoginContainer = styled.div`
 
 const SignIn = () => {
 	const [credentials, setCredentials] = useState({ email: '', password: '' });
-	const { signInAdmin } = useContext(FirebaseContext);
+	const { signInAdmin } = useFirebase();
 
 	const handleChange = e => {
 		setCredentials({
@@ -114,7 +114,7 @@ const SignIn = () => {
 					required
 				/>
 			</FormGroupContainer>
-      <ButtonContainer onClick={handleSubmit}>Login</ButtonContainer>
+			<ButtonContainer onClick={handleSubmit}>Login</ButtonContainer>
 		</LoginContainer>
 	);
 };

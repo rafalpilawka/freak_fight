@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import FightFormFormik from 'components/Admin/FightFormFormik'
 import SignIn from 'components/Admin/SignIn'
-import Firebase, { FirebaseContext } from 'Firebase/FreakFight/index'
+import { useFirebase } from 'Firebase/FreakFight/index'
 
 const Admin = () => {
-	const { auth } = useContext(FirebaseContext)
-	const [adminStatus, setAdminStatus] = useState({admin: true})
-	console.log(adminStatus.admin)
+	const { auth } = useFirebase()
+	const [adminStatus, setAdminStatus] = useState({admin: false})
 
 	useEffect(() => {
 		const authVar = auth.onAuthStateChanged(function (user) {

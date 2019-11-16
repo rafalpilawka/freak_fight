@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import FighterForm from 'components/Admin/FighterForm';
 import styled from 'styled-components';
-import FirebaseContext from 'Firebase/FreakFight/context';
+import { useFirebase } from 'Firebase/FreakFight/index';
 
 const FormContainer = styled.div`
 	 {
@@ -12,6 +12,7 @@ const FormContainer = styled.div`
 		margin-top: 20px;
 	}
 `;
+
 const ButtonContainer = styled.button`
 	 {
 		padding: 8px;
@@ -22,7 +23,6 @@ const ButtonContainer = styled.button`
 		background-color: black;
 		border-radius: 5px;
 		position: relative;
-
 		&:hover {
 			background-color: darkred;
 			color: #fdec6e;
@@ -53,20 +53,19 @@ const ItemContainer = styled.div`
 		justify-self: stretch;
 		justify-content: center;
 		align-items: center;
-
 		& p {
 			text-align: center;
 			justify-content: center;
 			padding: 0px !important;
-      color: white;
-      heigth: 100%;
-      font-size: 2em;
+			color: white;
+			heigth: 100%;
+			font-size: 2em;
 		}
 	}
 `;
 
-function FightFormFormik() {
-	const [formValues, setFormValues] = useState({
+const FightFormFormik = () => {
+	const initialState = {
 		favFighter1: [],
 		favFighter2: [],
 		fighter1: {
@@ -89,9 +88,11 @@ function FightFormFormik() {
 		votesForWin: [],
 		winFighter1: [],
 		winFighter2: []
-	});
+	};
 
-	const { addFighterHandler } = useContext(FirebaseContext);
+	const [formValues, setFormValues] = useState(initialState);
+	const { addFighterHandler } = useFirebase();
+	const [reset, setReset] = useState(false);
 
 	function handleFormAChange(values) {
 		setFormValues({
@@ -107,27 +108,28 @@ function FightFormFormik() {
 		});
 	}
 
-	function handleSubmit() {
-		alert(JSON.stringify(formValues, null, 2));
+	const handleSubmit = () => {
 		addFighterHandler(formValues);
-	}
+		setFormValues({ ...initialState });
+		setReset(!reset);
+	};
 
 	return (
 		<FormContainer>
 			<FightersContainer>
 				<ItemContainer>
-					<p data-testid='fighter'>FIGHTER ONE</p>
-        </ItemContainer>
-        <ItemContainer>
+					<p data-testid="fighter">FIGHTER ONE</p>
+				</ItemContainer>
+				<ItemContainer>
 					<p>FIGHTER TWO</p>
-        </ItemContainer>
-        <ItemContainer>
-					<FighterForm onChange={handleFormAChange} />
-        </ItemContainer>
-        <ItemContainer>
-					<FighterForm onChange={handleFormBChange} />
-        </ItemContainer>
-        <ButtonContainer className="submit_button" onClick={handleSubmit}>
+				</ItemContainer>
+				<ItemContainer>
+					<FighterForm onChange={handleFormAChange} reset={reset} />
+				</ItemContainer>
+				<ItemContainer>
+					<FighterForm onChange={handleFormBChange} reset={reset} />
+				</ItemContainer>
+				<ButtonContainer className="submit_button" onClick={handleSubmit}>
 					Add Fight
 				</ButtonContainer>
 			</FightersContainer>

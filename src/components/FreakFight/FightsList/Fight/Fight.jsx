@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import Fighter from 'components/FreakFight/FightsList/Fight/Fighter/Fighter';
-import { ReactComponent as VS } from 'components/FreakFight/FightsList/Fight/vslogo.svg'
+import { ReactComponent as VS } from 'assets/vslogo.svg';
 
 const FightWrapper = styled.div`
 	 {
@@ -10,12 +10,10 @@ const FightWrapper = styled.div`
 		background-color: black;
 		justify-items: center;
 		align-items: center;
-
 		& .fighter1grid {
 			grid-column: 1/4;
 			grid-row: 1;
 		}
-
 		& .fighter2grid {
 			grid-column: 4/7;
 			grid-row: 1;
@@ -37,22 +35,16 @@ const VSlogoContainer = styled.div`
 	}
 `;
 
-const Fight = ({ fight, modal, id, userFights, voted}) => {
-
-	const {winFighter1 , winFighter2} = fight;	
+const Fight = ({ fight, modal, id, userFights, voted }) => {
+	const { winFighter1, winFighter2 } = fight;
 	const getRatio = () => {
 		const ratioArray = new Array(2);
-		ratioArray[0] = Math.round(winFighter1.length / (winFighter2.length + winFighter1.length) * 100)
-		ratioArray[1] = 100 - ratioArray[0]
-		return ratioArray
-	}
-
-	// const checkUserFightsArray = () => {
-	// 	if(userFights){
-	// 		const present = userFights.filter(fight => fight === id);
-	// 		return present.length>0 ? true : false
-	// 	}else {return false}
-	// };
+		ratioArray[0] = Math.round(
+			winFighter1.length / (winFighter2.length + winFighter1.length) * 100
+		);
+		ratioArray[1] = 100 - ratioArray[0];
+		return ratioArray;
+	};
 
 	return (
 		<FightWrapper>
@@ -70,7 +62,6 @@ const Fight = ({ fight, modal, id, userFights, voted}) => {
 			<VSlogoContainer>
 				<VS styles={{ width: '100%' }} />
 			</VSlogoContainer>
-
 			<Fighter
 				modal={modal}
 				fighter={fight.fighter2}

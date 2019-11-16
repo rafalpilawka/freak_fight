@@ -13,45 +13,52 @@ const config = {
 	measurementId: 'G-DLHYSZ4LGV'
 };
 
-class Firebase {
+class SuperFirebase {
 	constructor() {
-		app.initializeApp(config);
+		if (!app.apps.length) {
+			app.initializeApp(config);
+		}
 		this.auth = app.auth();
 		this.facebookProvider = new app.auth
 			.FacebookAuthProvider().setCustomParameters({ display: 'popup' });
 		this.firestore = app.firestore();
 	}
+}
+
+class Firebase extends SuperFirebase {
 	updateField = (name, id, obj) => {
 		this.firestore.collection(name).doc(id).update(obj);
 	};
 	getCollectionDoc = (name, id) => {
-		console.log(name, id);
 		this.firestore.collection(name).get();
 	};
-
 	doSignInWithFacebook = () => {
-		this.auth.signInWithPopup(this.facebookProvider).then(res=>this.addUserToDB(res.user))
+		this.auth
+			.signInWithPopup(this.facebookProvider)
+			.then(res => this.addUserToDB(res.user));
 	};
-
 	doSignOut = () => this.auth.signOut();
 
+	addUserToDB = async user => {
+		const pointerUser = await this.firestore
+			.collection('users')
+			.doc(user.uid)
+			.get();
+		const data = pointerUser.data();
 
-	addUserToDB= async(user) =>{
-		const pointerUser = await this.firestore.collection('users').doc(user.uid).get()
-		const data = pointerUser.data()
-
-		if(!data){
+		if (!data) {
 			const userDoc = {
 				name: user.displayName,
 				email: user.email,
 				fights: []
-			}
-		await this.firestore.collection('users').doc(user.uid).set({ ...userDoc });
-			console.log('we made it- user is added')
+			};
+			await this.firestore
+				.collection('users')
+				.doc(user.uid)
+				.set({ ...userDoc });
 		}
-		return console.log('we already have this user')
-
-	}
+		return alert('we already have this user');
+	};
 
 	isInitialized() {
 		return new Promise(resolve => {
@@ -59,12 +66,16 @@ class Firebase {
 		});
 	}
 
+	getFirebase() {
+		return this;
+	}
+
 	signInAdmin = credentials => {
 		this.auth
 			.signInWithEmailAndPassword(credentials.email, credentials.password)
 			.then(res => console.log(res))
 			.catch(err => {
-				console.log(err);
+				alert(err.message);
 			});
 	};
 
@@ -72,9 +83,8 @@ class Firebase {
 		const pointer = await this.firestore.collection('fights');
 		try {
 			pointer.doc().set({ ...fight });
-			console.log(fight);
 		} catch (error) {
-			console.log(error);
+			alert(error);
 		}
 	};
 
@@ -106,7 +116,7 @@ class Firebase {
 					pointer.update({ [`${selector}`]: setvotingArray });
 					pointer.update({ [`${field}`]: fighterVotesArray });
 				} catch (error) {
-					console.log(error);
+					alert(error);
 				}
 			} else {
 				alert(`You've already voted for this`);

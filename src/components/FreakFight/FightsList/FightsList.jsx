@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useFirebase } from 'Firebase/FreakFight/index'
 import List from 'components/FreakFight/FightsList/List'
@@ -44,10 +44,9 @@ const FightsList = () => {
 		if(userAuth){
 			const setUpMatrix = async()=>{
 				//IMPORTANT PART FOR CREATING DB USER 
-				await firestore.collection('users').doc(userAuth).onSnapshot(snapshot => {
-				console.log("TCL: setUpMatrix -> snapshot before if", snapshot.data())
+				const ref= userAuth.toString()
+				await firestore.collection('users').doc(ref).onSnapshot(snapshot => {
 				if(snapshot.data()){
-          console.log("TCL: setUpMatrix -> snapshot in if ", snapshot)
 					const user = snapshot.data()
 					const matrix = fights.map(fight => user.fights.some((el) => el === fight.id))
 					setVotedMatrix(matrix)

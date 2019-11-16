@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-kgoBCf rUmIk"
+  >
+    <div
+      class="sc-VigVT iRjkhm fighter-wrapper fighter1grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/marcin-malczynski.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          Malczyński 
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-kGXeez fdFUfe"
+    >
+      <svg
+        styles="[object Object]"
+      >
+        vslogo.svg
+      </svg>
+    </div>
+    <div
+      class="sc-VigVT bsTZTI fighter-wrapper fighter2grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/marek-hoffmann-adbuster.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          Ad buster
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="sc-kgoBCf rUmIk"
+  >
+    <div
+      class="sc-VigVT iRjkhm fighter-wrapper fighter1grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/mini-majk.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          Mini majk
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-kGXeez fdFUfe"
+    >
+      <svg
+        styles="[object Object]"
+      >
+        vslogo.svg
+      </svg>
+    </div>
+    <div
+      class="sc-VigVT bsTZTI fighter-wrapper fighter2grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/lord-kruszwil.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          Lord Kruszwil
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="sc-kgoBCf rUmIk"
+  >
+    <div
+      class="sc-VigVT iRjkhm fighter-wrapper fighter1grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/bonus.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          BONUS BGC
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-kGXeez fdFUfe"
+    >
+      <svg
+        styles="[object Object]"
+      >
+        vslogo.svg
+      </svg>
+    </div>
+    <div
+      class="sc-VigVT bsTZTI fighter-wrapper fighter2grid"
+    >
+      <div
+        class="sc-jTzLTM gIzLzv"
+      >
+        <img
+          class="sc-fjdhpX jSgrqQ"
+          src="https://famemma.com/app/uploads/2019/10/najman.png"
+        />
+        <div
+          class="sc-cSHVUG jsioyC winFighter"
+        >
+          <button
+            class="sc-kAzzGY dYejuL"
+          />
+        </div>
+        <div
+          class="sc-jzJRlG bkIspK"
+        >
+          Najman
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
