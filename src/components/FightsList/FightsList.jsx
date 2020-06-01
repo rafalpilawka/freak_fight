@@ -39,7 +39,7 @@ const FightsList = styled.div`
 const FightsListContainer = () => {
 	const Firebase = useContext(FirebaseContext);
 	const [fights, setFights] = useState([]);
-	const [modalIsOpen, setToggleModal] = useState({ modalIsOpen: false });
+	const [modalIsOpen, setToggleModal] = useState( false );
 
 	useEffect(() => {
 		Firebase.firestore.collection('fights').onSnapshot(snapshot => {
@@ -52,11 +52,11 @@ const FightsListContainer = () => {
 	}, []);
 
 	const closeModal = () => {
-		setToggleModal({ modalIsOpen: false });
+		setToggleModal( false );
 	};
 
 	const fireModal = () => {
-		setToggleModal({ modalIsOpen: true });
+		setToggleModal( true );
   };
 
 	const fightsArray = fights.map( fight =>
@@ -69,7 +69,7 @@ const FightsListContainer = () => {
             {fights ? fightsArray : <div>Loading...</div>}
 		</FightsList>
         <Modal
-            isOpen={modalIsOpen.modalIsOpen}
+            isOpen={modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Authorization information">
