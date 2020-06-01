@@ -1,2 +1,2 @@
 # freak_fight
-React Voting app for FameMMA fights
+React Voting app for FakeMMA fights
